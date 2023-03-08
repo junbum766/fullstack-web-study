@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selector_1</title>
+    <style>
+        /* 전체 선택자(4순위) */
+        * {
+            color: aqua;
+        }
+        /* 태크 선택자(3순위) */
+        li {
+            background-color: black;
+            color: white;
+        }
+        h3 {
+            background-color: red;
+            color: blue;
+            text-align: center;
+            letter-spacing: 100px;
+        }
+        /* 클래스 선택자(2순위) */
+        .small {
+            background-color: blueviolet;
+            color: black;
+        }
+        .big {
+            background-color: blue;
+        }
+        /* id 선택자(1순위) */
+        #ptag {
+            background-color: black;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="small">쥐</li>
+        <li class="big">소</li>
+        <li class="big">토끼</li>
+        <li class="small">호랑이</li>
+    </ul>
+    <h3>어흥어흥어흥</h3>
+    <p id="ptag">p Tag</p>
+</body>
+</html>

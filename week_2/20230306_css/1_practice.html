@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1_practice</title>
+    <style>
+        .container {
+            width: 1000px;
+            height: 600px;
+            background-color:rgb(195, 192, 192);
+            display: flex;
+            position: relative;
+            
+        }
+        .container .photo1 img {
+            width: 300px;
+            height: 150px;
+            transform: skewY(20deg);
+            position: absolute;
+            top: 200px;
+            left: 300px;
+            z-index: 3;
+        }
+        .container .photo2 img {
+            width: 300px;
+            height: 150px;
+            transform: skewY(20deg);
+            position: absolute;
+            top: 200px;
+            left: 400px;
+            z-index: 2;
+
+        }
+        .container .photo3 img {
+            width: 300px;
+            height: 150px;
+            transform: skewY(20deg);
+            position: absolute;
+            top: 200px;
+            left: 500px;
+            z-index: 1;
+        }
+        .container .photo1 img:hover {
+            transform: skew(0);
+            transition: 1s;
+            z-index: 4;
+        }
+        .container .photo2 img:hover {
+            transform: skew(0);
+            transition: 1s;
+            z-index: 4;
+        }
+        .container .photo3 img:hover {
+            transform: skew(0);
+            transition: 1s;
+            z-index: 4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="photo1">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_bO9oej5qJui46Z5ox8GuIp4xjAOUQtqQy5ZYZ1UF-g&s" alt="">
+        </div>
+        <div class="photo2">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwKPMlEikB5KHzkqZ5jRxFhOGS_ddAd_Xkked_b60OIQ&s" alt="">
+        </div>
+        <div class="photo3">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDG-qRG7sAfgzsQrLhLNyIhHpS63nmgzEIMUPPc2gXJA&s" alt="">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+.grass {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    background-image: url("./grass.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+.grass>.body1 {
+    position: absolute;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    top: 110px;
+    left: 150px;
+    z-index: 1;
+}
+.grass .white {
+    position: absolute;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 2;
+}
+.grass .black {
+    position: absolute;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    top: 6px;
+    left: 2px;
+    z-index: 3;
+}
+.grass>.body2 {
+    position: absolute;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(51, 51, 220);
+    top: 140px;
+    left: 180px;
+    z-index: 2;
+}
+.grass>.body3 {
+    position: absolute;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(72, 72, 219);
+    top: 170px;
+    left: 200px;
+    z-index: 3;
+}
+.grass>.body4 {
+    position: absolute;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(121, 121, 215);
+    top: 200px;
+    left: 230px;
+    z-index: 4;
+}
+.grass>.body5 {
+    position: absolute;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(197, 197, 212);
+    top: 220px;
+    left: 270px;
+    z-index: 5;
+}

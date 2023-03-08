@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice_1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .ball {
+            width: 100px;
+            height: 100px;
+            background:linear-gradient(45deg, red, orange, yellow, green);
+            box-shadow: 5px 10px rgba(0, 0, 0, 0.358);
+            border-radius: 50%;
+            position: relative;
+
+            animation-name: ball;
+            animation-duration: 8s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes ball {
+        0% {
+            transform: translate(0,0);
+        }
+        25% {
+            transform: translate(calc(100vw - 100px),0); /* calc 안에 띄어쓰기 주의 */
+        }
+        50% {
+            transform: translate(calc(100vw - 100px),calc(100vh - 100px));
+        }
+        75% {
+            transform: translate(0,calc(100vh - 100px));
+        }
+        100% {
+            transform: translate(0,0);
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="ball"></div>
+</body>
+</html>

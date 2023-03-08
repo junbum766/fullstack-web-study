@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form tag</title>
+</head>
+<body>
+    <form>
+        <label for="textInput">id : </label>
+        <input type="text" id="textInput" />
+        <br />
+        <label for="pwd">비밀번호 : </label>
+        <input type="password" id="pwd" />
+        <br />
+        <!-- email type : 실제 작성시 이메일 형식이 아니면 제츨이 안됨 
+            value="" : placeholder와 달리 아예 초기 값을 넣어줌 -->
+        <label for="emailInput">이메일 : </label>
+        <input type="email" placeholder="example@google.com" id="emailInput">
+        <br />
+        <textarea cols="50" rows="10" placeholder="하고싶은 말을 써주세요."></textarea>
+        <br />
+        <input type="color"/><br />
+        <input type="range"/><br />
+        <input type="file"/><br />
+        <input type="number"/><br />
+        <input type="date"/><br />
+        <input type="datetime-local"/><br />
+        <h5>다음 중 input type이 아닌 것은?(모두 고르시오)</h5>
+        <input type="checkbox" name="input" /> text
+        <input type="checkbox" name="input"/> bread
+        <input type="checkbox" name="input"/> date
+        <input type="checkbox" name="input" disabled/> click
+        <input type="checkbox" name="input" checked/> img
+        <br />
+        <h5>다음 중 img 태크의 속성인 것은?</h5>
+        <input type="radio" name="img" id="title" disabled> <label for="title">title</label> 
+        <input type="radio" name="img" id="alt"> <label for="alt">alt</label> 
+        <input type="radio" name="img" id="mouse"> <label for="mouse">mouse</label>
+        <input type="radio" name="img" id="value"> <label for="value">value</label>
+        <input type="radio" name="img" id="herf"> <label for="herf">href</label>
+        <br /> <br /> <br />
+        <input type="button" value="버튼">
+        <input type="submit" value="제출">
+        <button><span style="color : red">버튼</span></button>
+
+        <hr />
+        <select name="flower">
+            <optgroup label="redflower">
+                <option>장미</option>
+                <option>동백꽃</option>
+                <option>카네이션</option>
+            </optgroup>
+            <optgroup label="whiteflower">
+                <option>벚꽃</option>
+                <option>목련</option>
+                <option>매화</option>
+            </optgroup>
+        </select>
+    </form>
+    
+</body>
+</html>

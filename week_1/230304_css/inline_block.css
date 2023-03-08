@@ -1,0 +1,131 @@
+.d-block {
+    display: block; /*안써줘도 똑같음 */
+    background-color: blueviolet;
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    padding: 30px;
+    margin: 20px;
+}
+.d-inline {
+    display: inline;
+    background-color: red;
+    border: 1px solid blue;
+    width: 50px;
+    height: 50px;
+    padding: 30px; /*세로는 서로 밀어내지 않고 배경색만 적용*/
+    margin: 20px;
+}
+.d-inline-block {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    /* padding: 30px;
+    margin: 20px; */
+    padding: 10px 20px 30px 40px;
+    margin: 10px;
+}
+.parent {
+    width: 1000px;
+    height: 200px;
+    background-color: red;
+}
+.parent .min {
+    min-width: 1000px;
+    background-color: orange;
+    height: 100px;
+    
+}
+.parent .max {
+    max-width: 500px;
+    background-color: aqua;
+    height: 100px;
+}
+.box {
+    background-color: blue;
+    border: 1px solid black;
+}
+.box-px {
+    width: 50px;
+    height: calc(50vw - 100px);
+}
+.box-view {
+    width: 10vw;
+    height: 10vh;
+}
+.box-per { /*여기선 부모 높이가 설정되어 있지 않아서 세로는 x*/
+    width: 10%;
+    height: 10%;
+}
+.rem {
+    font-size: 2rem;
+}
+.em {
+    font-size: 2em; /*부모의 두배씩(기본은 16px)*/
+}
+
+.square {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border: 3px solid black;
+}
+.border {
+    border: 3px solid black;
+    /* border: medium none black;
+    border-style: dashed; */
+    border-color: blue;
+    border-color: red orange yellow green;
+    border-left: 5px dotted slateblue;
+    border-top-style: dashed;
+}
+.rounded {
+    background-color: skyblue;
+    border-radius: 20px;
+    border-radius: 50%; 
+}
+.box-sizing {
+    padding: 20px;
+    border: 15px solid red;
+    background-color: orange;
+}
+.content-box {
+    box-sizing: content-box;
+
+}
+.border-box {
+    box-sizing: border-box;
+}
+
+.d-none {
+ /* display: none; */
+ background-color: red;
+}
+.invisible {
+ /* visibility: hidden; */
+ background-color: orangered;
+}
+.opacity-0 {
+ /* opacity: 0; */
+ background-color: tomato;
+}
+
+.square img[alt=강아지] {
+    width: 200px;
+}
+.overflow-hidden {
+    overflow-x: hidden;
+}
+.overflow-auto {
+    overflow: auto;
+}
+.overflow-scroll {
+    /* 컨텐츠가 넘치지 않을 때도 스크롤 영역 존재 */
+    overflow: scroll;
+}
+.overflow-visible {
+    /* 기본값 */
+    overflow: visible;
+}

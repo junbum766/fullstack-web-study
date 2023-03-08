@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selector_2</title>
+    <style>
+        header {
+            height: 70px;
+            background-color: gray;
+        }
+        main section {
+            border: 1px solid blue;
+        }
+        main section article {
+            height: 100px;
+            border: 1px solid black
+        }
+        header h2 {
+            color: white;
+            text-align: center;
+            line-height: 70px;
+        }
+        .first>h2 {
+            color: white;
+            background-color: pink;
+        }
+        .second>h2 {
+            color: white;
+            background-color: skyblue;
+        }
+        .second li {
+            font-size: 10px;
+            background-color: brown;
+            color: #fff;
+        }
+        #kong + li {
+            color: white;
+            background-color: black;
+        }
+        #kong ~ li {
+            color: pink;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>선택자 배우기</h2>
+    </header>
+    <main>
+        <section class="first">
+            <h2>첫번째 section</h2>
+            <article>
+                <span>전래동화</span>
+            </article>
+            <article>
+                <ul>
+                    <li>토끼와 거북이</li>
+                    <li id="kong">콩쥐 팥쥐</li>
+                    <li>흥부와 놀부</li>
+                    <li>햇님 달님</li>
+                    <li>흔혜갚은 까치</li>
+                </ul>
+            </article>
+            <article></article>
+        </section>
+        <section class="second">
+            <h2>두번째 section</h2>
+                <article>
+                    <ul>
+                        <li>신데렐라</li>
+                        <li>백설공주</li>
+                    </ul>
+                </article>
+        </section>
+    </main>
+</body>
+</html>

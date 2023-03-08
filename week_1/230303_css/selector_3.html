@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selector_3</title>
+    <style>
+        .div1 {
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+            text-align: center;
+            line-height: 100px;
+        }
+        .div1:hover {
+            background-color: pink;
+            height: 150px;
+            cursor:grab;
+        }
+        .div1:active {
+            background-color: black;
+            color: white;
+            width: 150px;
+        }
+        input:focus {
+            background-color: blueviolet;
+            color: white;
+            outline-color: red;
+        }
+        .links>a {
+            font-size: 20px;
+            font-weight: bold;
+            color: green;
+        }
+        .links>a:hover {
+            color: red;
+        }
+        .links>a:visited {
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1">
+        <span>div1</span>
+    </div>
+    <input type="text">
+    <div class="links">
+        <a href="http://www.naver.com">NAVER</a>
+        <a href="http://google.com">Google</a>
+    </div>
+    
+    
+</body>
+</html>

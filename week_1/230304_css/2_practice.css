@@ -1,0 +1,46 @@
+.font {
+    position: absolute;
+    color: rgb(255, 213, 0);
+    font-size: 40px;
+    font-weight: 1000;
+    left: 320px;
+    top: 60px;
+}
+.border {
+    position: absolute;
+    z-index: 1;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: linear-gradient(225deg,red, pink, orange, yellow);
+}
+.white {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 485px;
+    height: 485px;
+    border-radius: 50%;
+    background-color: white
+}
+.pooh {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background-image: url(./pooh.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+}

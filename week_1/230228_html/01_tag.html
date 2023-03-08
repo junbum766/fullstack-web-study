@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag</title>
+</head>
+<body>
+    <h1>안녕하세요</h1>
+    <h2>안녕하세요</h2>
+    <h3>안녕하세요</h3>
+    <h4>안녕하세요</h4>
+    <h5>안녕하세요</h5>
+    <h6>안녕하세요</h6>
+    <p>내일은 삼일절. 늦잠을 자야겠다.</p><br>୧(๑•̀ᗝ•́)૭ 화났어요
+    <pre>거의 안쓰이는 태크
+        엔터도 적용이 되지만
+        글씨체가 별로..?
+    </pre>
+    <hr />
+
+    <br /> <br />
+
+    <h3>오늘 할일~</h3>
+    <ul type="circle">
+        <!-- Alr + Shift + 아래방향키 : 아래로 복붙 -->
+        <li>html 공부</li>
+        <li>저녁먹기</li>
+        <li>운동하기</li>
+    </ul>
+
+    <br /> <br />
+
+    <!-- tpye = 1, a, A, i, I, ... -->
+    <h3><em>카페라떼</em>를 만드는 방법</h3>
+    <ol type = "1">
+        <li><strong>우유</strong>를 컵에 넣습니다.</li>
+        <li><b>얼음</b>을 넣습니다.</li>
+        <li><u><i>에스프레소 샷</i></u>을 넣습니다.</li>
+        <li><del>맛있게 먹습니다</del></li>
+    </ol>
+
+    <hr />
+    <br />
+
+    <h1>img & a 태크</h1>
+    <!-- img 태크의 속성 
+    - scr(필수)
+    - alt(선택 - 항상 써라) : 사진에 대한 설명. 사진이 뜨지 않았을 때 이게 없으면 아무것도 없는 걸로 보임.
+    - height, width : 높으와 너비 = 둘 중 하나만 썼을 때는 원본 비율대로 맞춰줌. -->
+    <img src="http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQBN_j3n-112LJObck7xBDuwiTZ41rh_qhCGiScwZHeTGiSyhnWfaTv29UQIzPQaguboh1fDLCVPIJlolc" alt="강아지 사진" width="200"/>
+    <br /> <br />
+    <img src="./img/말티푸.jpg" title= "귀여운 말티푸" alt="말티푸 사진" width="200" />
+    <br /> <br />
+    <!-- target : "self" = 해당 페이지에서, "_blank" = 새로운 페이지에서
+         title : "mouse" = 마우스 대면 설명 -->
+    <a href="http://www.naver.com" title="네이버로 이동하는 링크" target="_blank">네이버로 이동</a>
+    <br />
+    <a href="./01_tag.html" target="_blank">첫번째 html로 이동</a>
+    <br />
+    <a href="https://hong99hong.tistory.com/" target="_blank">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAeFBMVEX///8REREAAAAODg75+fkJCQnn5+fAwMD19fWcnJyqqqr8/PykpKTc3Nzt7e3i4uK3t7fT09M6OjrKyspzc3NjY2OZmZlpaWknJydOTk6xsbF8fHw1NTUWFhYiIiLMzMxBQUGEhIRdXV16enqPj48qKipWVlZJSUl8ZvdWAAAEsklEQVR4nO3c25aiOhAG4KbCURAPoGh7Ghztfv833GirI0kquvYISOb/rvqieq0K4VRJyccHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADA23H9YJB87tLHkXGaDZJBlsaPQ9PdZzIIfPfv0/trw/JIP5ZJaIz0578ukb/mvjEyTJaXyHU5fGWy/0NaEHnOmSDaJHxkXFYJ/0Q61V+lYR6TDZH4ifSIiidOjubsbqlc8lly0zha1CIFLUZMZLi8HrPrgds1lf5jg1rW59nZ6s+/7DZ/t0jKtJH+Vo4UNGhyECaBMsAq8bVuFke1ablOuG4Ww7U8wNMQg6aHoqdLuxriXo10F2raVeRCc6fc6yL1B6N5U10yVeLqOfWbifytRA6YyGkbA5IF+mQc4cm3yZHmbD5HKlMTe/pIp5PzdMmM0KGxFFmykaUUOWYjl20N6w9uYtRs4q3uej3xttJ0s0dNne7msYe7yqZ+BxmykQ7V31hc9qipJ0bz2FOvymZSi/w0RH7WIieGSPmEbl5hyKb+LI8MkVEtMjNEFm0O7mxmyKZ+45sbIue1SO72fIqctTm4M/vncPX0dcg8xc+R9bcD03W4anNwD/IWVK93THnXj0VquJe2//Y9ZLPxpFcsl3tRqV5/pDfTKffkFNRBJcxmQ3IdnLNvKrkUmXCR8lFrBXeaCpLrpx07Qrm2DbkTo5sS0dFPIh2USG1JpC20DvpIz2ljQIpMe8BpqlZ9vjZSkLoe4GpLMsGsBzRO96DTF6vaR7m2ItKW1dJjs0UrZW48ZtkoUSKFckP6sVOGKDp4Ft5E0gITbbkiJ5Aj2Zp2tJUjO5vBk2z6J3NBlPNrwqOvuzESffH1XpjfrVESTTu6Bq/i8XV5uhqf+amczW6RM3PWw/wWuRw/sQXQtHQcrfIyyR7vMYRBVOZlFJhX/0/cLCnzVTTudL0bAAAAAADelj/ZTczdQn0WB8Wl6CuCNyj6Xm98vJbugujY/oZn09xZbYXJo9k7NOW9kK80AtHaqusx3KgLprR5vJjRH9oeiy46SJrC7HNLe9w9ljIbiMKzZSmNbVWwZRJjdi/Vm9rx5PcN+/h2PDH4/rAuerma8Hw/TV893xPVV6YR2jGHz/dE9ZWpW63j3c8XYZtkNK03PcU2anbQUtkMtm20q1+KvN43U1t8d53Yy0yYnqjJ43/tC23PIdMy1FOajuIuO52aMJeauTxLXtjuZHQ3Ro/79WGvxfP1rdNpPbej9JXFk0P+9f2VHyZ2ju/C6sEBAAAAALwJN/VTy9pM7o2i/XpDm/U+6uZjLE0b7qvS1xNCVAU+7bv+wFUDDveflBKk+aVpv4XKyj7NLNmzuNC0DNnUMMT8Xl35rXqPMd9vkb7d0mPhQt9Q4y1suRTZbW5LNrnZzTV7ttdSwz6+Ha17pi8H2bEJzH6wxJotxH+7J8qOEdp/ltp/pwkNI7TkpYb/SqYt5YX9b23ukXnzPlqzKMV0elvS5X2m/QShXS1D1q9ifMSF1LwnqLCtK6P+0ayOP2/VjFFxtyJc2LnqnQ72x42zOe4HdhS+em5ozTMQAAAAAAAAAAAAAAAAAAAAAAAAAADgLf0H6V4si89PvxkAAAAASUVORK5CYII=" title="블로그 이동" width="200">
+    </a>
+
+    <hr />
+    <br />
+
+    
+
+</body>
+</html>

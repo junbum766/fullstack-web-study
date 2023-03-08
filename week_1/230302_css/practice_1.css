@@ -1,0 +1,11 @@
+@import url("./import.css");
+
+p {
+    background-color: red;
+    color: white;
+}
+
+h3 {
+    background-color: aqua;
+    color: red;
+}

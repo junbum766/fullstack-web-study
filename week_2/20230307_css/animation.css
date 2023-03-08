@@ -1,0 +1,95 @@
+/*
+transition vs animation 
+
+transition
+    - 전환될 "스타일"을 지정
+    - hover, active, onclick 등의 이벤트에 의해 발생
+
+animation
+    - 중간 step 처럼 가능 : 보다 세밀한 스타일 전환 가능
+    - 정지, 반복, 시작 동작 가능
+    - @keyframes 로 이루어짐
+*/
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+    position: relative;
+
+    animation-name: my-ani;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-delay: 2s;
+    animation-timing-function: ease;
+}
+
+@keyframes my-ani {
+0% {
+    left: 0px;
+}
+
+25% {
+    left: 200px;
+}
+
+50% {
+    left: 400px;
+}
+
+75% {
+    left: 200px
+}
+
+100% {
+    left: 0px;
+}
+}
+
+.bounce-ball1 {
+    position: relative;
+    left: 100px;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: black;
+
+    animation-name: bounce1;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite ;
+    animation-direction: alternate;
+}
+
+@keyframes bounce1 {
+    to {
+        top: 0;
+    }
+    from {
+        top: 300px;
+    }
+}
+
+.bounce-ball2 {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: red;
+
+    animation: bounce2  2s  linear  infinite ;
+}
+
+@keyframes bounce2 {
+    from,
+    to {
+        bottom: 0;
+        animation-timing-function: ease-out;
+    }
+
+    50% {
+        bottom: 300px;
+        animation-timing-function: ease-in;
+    }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inline</title>
+    <link rel="stylesheet" href="./inline_block.css">
+</head>
+<body>
+    <h2>display 속성</h2>
+    <div class="d-block">block1</div>
+    <div class="d-block">block2</div>
+    <div class="d-block">block3</div>
+    <div class="d-block">block4</div>
+    <br /> <br />
+    <span class="d-inline">inline1</span>
+    <span class="d-inline">inline2</span>
+    <span class="d-inline">inline3</span>
+    <span class="d-inline">inline4</span>
+    <br /> <br />
+    <span class="d-inline-block">inline-block1</span>
+    <span class="d-inline-block">inline-block2</span>
+    <span class="d-inline-block">inline-block3</span>
+
+    <hr /> <br>
+
+    <h2>max-width, min-width</h2>
+    <div class="parent">
+        <div class="min">min-width</div>
+        <div class="max">max-width</div>
+    </div>
+    <h2>단위</h2>
+    <div class="box box-px"></div> 
+    <div class="box box-view"></div>
+    <div class="box box-per"></div>
+    <div class="rem">rem
+        <div class="rem">rem
+            <div class="rem">rem</div>
+        </div>
+    </div>
+    <div class="em">em
+        <div class="em">em
+            <div class="em">em</div>
+        </div>
+    </div>
+
+    <hr />
+
+    <h2>border, border-radius</h2>
+    <div class="square border"></div>
+    <div class="square rounded"></div>
+
+    <hr />
+
+    <h2>box-sizing</h2>
+    <div class="square box-sizing content-box">box1</div>
+    <div class="square box-sizing border-box">box2</div>
+
+    <hr>
+
+    <div class="square">original</div>
+    <div class="square d-none">d-none</div>
+    <div class="square invisible">invisible</div>
+    <div class="square opacity-0">opacity-0</div>
+    <div class="square">original</div>
+
+    <hr>
+
+    <h2>overflow 속성</h2>
+    <!-- .square*4>p>lorem^img -->
+    <div class="square overflow-hidden">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat, maiores fuga et vero vel voluptatum, perspiciatis amet natus doloribus distinctio assumenda delectus ipsam illum in expedita suscipit molestiae eligendi fugiat.</p>
+        <img src="../230228_html/img/말티푸.jpg" alt="강아지">
+    </div>
+    <div class="square overflow-auto">
+        <p>Excepturi doloremque laudantium consectetur quaerat voluptatum, quo dolore sint illo laboriosam, molestias quis aspernatur, quas similique ea molestiae delectus odio ex reprehenderit. Distinctio soluta accusamus blanditiis quia enim itaque deserunt?</p>
+        <img src="../230228_html/img/말티푸.jpg" alt="강아지">
+    </div>
+    <div class="square overflow-scroll">
+        <p>Molestias nemo, omnis voluptas pariatur libero porro quis accusamus et eius sunt perspiciatis expedita minus, consequatur quia nostrum tempore officia. Fugiat animi ad tempora ea veritatis adipisci quod sequi non.</p>
+        <img src="../230228_html/img/말티푸.jpg" alt="강아지">
+    </div>
+    <div class="square overflow-visible">
+        <p>Neque, provident. Nulla rerum nobis aperiam! Unde eum fugit hic dignissimos, aliquam reprehenderit esse vero commodi aut corporis, molestias doloribus assumenda libero! Quam odit aliquid tempora illo ab! Cum, cupiditate?</p>
+        <img src="../230228_html/img/말티푸.jpg" alt="강아지">
+    </div>
+</body>
+</html>

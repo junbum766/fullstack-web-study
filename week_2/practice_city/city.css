@@ -1,0 +1,185 @@
+body {
+  margin: 0; 
+}
+.background {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  animation-name: time;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+.background .container {
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.background .container .city img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.background .cloud1 img {
+  position: absolute;
+  width: 80px;
+  animation-name: cloud1;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  top: 200px;
+}
+.background .cloud2 img {
+  width: 150px;
+  position: absolute;
+  animation-name: cloud2;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  top: 120px;
+}
+.background .moon {
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  animation-name: forwardRotate_moon;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.background .moon img {
+  width: 150px;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  position: absolute;
+  top: calc(100% - 150px);
+}
+.background .sun {
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  animation-name: forwardRotate_sun;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.background .sun img {
+  width: 150px;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  position: absolute;
+  top: calc(100% - 150px);
+}
+
+@keyframes time {
+  0% {
+    background-color: rgb(74, 38, 251);
+  }
+  25% {
+    background-color: rgb(2, 132, 207);
+  }
+  50% {
+    background-color: rgb(64, 192, 243);
+  }
+  75% {
+    background-color: rgb(243, 166, 247);
+  }
+  100% {
+    background-color: rgb(74, 38, 251);
+  }
+}
+@keyframes cloud1 {
+  from,
+  to {
+    left: 0;
+  }
+  0% {
+    filter: opacity(0);
+  }
+  10% {
+    filter: opacity(1);
+  }
+  50% {
+    left: calc(100vw - 100px);
+
+    filter: opacity(0);
+  }
+  60% {
+    filter: opacity(1);
+  }
+  100% {
+    filter: opacity(0);
+  }
+}
+@keyframes cloud2 {
+  from,
+  to {
+    left: 0;
+  }
+  0% {
+    filter: opacity(0);
+  }
+  10% {
+    filter: opacity(1);
+  }
+  50% {
+    left: calc(100vw - 200px);
+
+    filter: opacity(0);
+  }
+  60% {
+    filter: opacity(1);
+  }
+  100% {
+    filter: opacity(0);
+  }
+}
+@keyframes forwardRotate_sun {
+  /* from {
+    transform: rotate(0deg), translate(-50% -50%);
+  } */
+  to {
+    transform: rotate(360deg);
+  }
+  0% {
+    filter: opacity(0);
+  }
+  25% {
+    filter: opacity(1);
+  }
+  50% {
+    filter: opacity(0);
+  }
+  75% {
+    filter: opacity(0);
+  }
+  100% {
+    filter: opacity(0);
+  }
+}
+@keyframes forwardRotate_moon {
+  /* from {
+    transform: rotate(0deg), translate(50% 50%);
+  } */
+  to {
+    transform: rotate(-360deg);
+  }
+  0% {
+    filter: opacity(0);
+  }
+  25% {
+    filter: opacity(0);
+  }
+  50% {
+    filter: opacity(0);
+  }
+  75% {
+    filter: opacity(1);
+  }
+  100% {
+    filter: opacity(0);
+  }
+}

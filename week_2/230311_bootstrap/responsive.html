@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>responsive</title>
+    <style>
+        .box {
+            background-color: black;
+            width: 100%;
+            height: 100px;
+            display: flex;
+        }
+        .box>div {
+            margin: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: rgb(157, 96, 213);
+        }
+        @media screen and (min-width: 576px) {
+            /* 최소 넓이 576px -> 576px 이상에서 적용 */
+            .box {
+                background-color: pink;
+                height: 50px;
+            }
+        }
+        @media screen and (min-width: 768px) {
+            .box {
+                background-color: yellow;
+            }
+        } /* 위에 media와 순서 바뀌면 적용 x */ 
+        
+        @media print {
+            .box {
+                background-color: green;
+            }
+        }
+
+        @media screen and (orientation: portrait) {
+            /* 세로가 더 길 때 적용. 가로는 landscape */
+            .box {
+                background-color: aqua;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .box {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div>a</div>
+        <div>b</div>
+        <div>c</div>
+        <div>d</div>
+    </div>
+</body>
+</html>

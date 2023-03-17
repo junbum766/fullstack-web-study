@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice_1</title>
+    <style>
+        .mint {
+            font-size: 50px;
+        }
+        .good {
+            font-size: 50px;
+        }
+        .bad-add {
+            font-size : 50px;
+            color: red;
+        }
+    </style>
+    
+</head>
+<body>
+    <span class="mint">민트 초코는 </span>
+    <span class="good">맛있다 >_<</span>
+
+    <script>
+        let bad = document.createElement('span');
+        bad.innerText = "맛없다 ㅡㅡ;;";
+        bad.classList.add('bad-add');
+        
+        let mint = document.querySelector('.mint');
+        let good = document.querySelector('.good');
+        good.remove();
+        mint.after(bad);
+    </script>
+</body>
+</html>

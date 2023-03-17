@@ -5,7 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OverWatch</title>
-    <link rel="stylesheet" href="./index.css" />
+    <!-- <link rel="stylesheet" href="./index.css" /> -->
+    <style>
+      body {
+        margin: 0;
+      }
+      .background {
+        width: 100vw;
+        height: 100vh;
+        background-image: url("./overwatch/bg.jpg");
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-repeat: no-repeat;
+        flex-direction: column;
+      }
+      .background .container {
+        width: 40vw;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+      }
+
+      .background .container .char img {
+        position: relative; /*hover시 앞에 튀어나오도록 z-index가 필요해서 z-index를 쓰기 위해 넣어줌*/
+
+        width: 100px;
+        height: 110px;
+        border: 5px solid white;
+        background-color: gray;
+        border-radius: 10%;
+        transform: skew(-10deg);
+        margin: 3px;
+        z-index: 1;
+      }
+      .background .container .char img:hover {
+        transform: skew(-10deg) scale(1.4);
+        background-color: rgb(255, 200, 0);
+        transition-duration: 1.5s;
+        z-index: 2;
+      }
+      .background .logo img {
+        width: 400px;
+        height: 200px;
+        margin: 30px;
+      }
+    </style>
   </head>
   <body>
     <div class="background">

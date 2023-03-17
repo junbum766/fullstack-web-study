@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p4</title>
+    <style>
+        .img-box {
+            background-color: rgb(247, 207, 214);
+            
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let body = document.querySelector('body')
+        let h1 = document.createElement('h1');
+        h1.innerText = '이달의 맛 BEST9';
+        body.append(h1)
+        body.style.textAlign = 'center'
+
+        let article = document.createElement('article');
+        article.setAttribute('class', 'class-box');
+        h1.after(article)
+
+        let img = document.createElement('img');
+        img.setAttribute('src', './dom1-practice/image/icecream1.png');
+        img.setAttribute('class', 'img-box');
+        article.append(img);
+
+        let div = document.createElement('div');
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>content</title>
+    <link rel="stylesheet" href="./content.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <script defer type="module" src="./content.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/f0ebd696f1.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="center list flex-column">
+        <div class="card flex-row open">
+          <img
+            src="https://cdne-totv8-prod-southeastasia.azureedge.net/media/dg1f1xip/firstteam_profiles_202223_richarlison.png?anchor=center&mode=crop&quality=100&width=750"
+            class="book"
+          />
+          <div class="flex-column info">
+            <div class="title">Richarlison</div>
+            <div class="author">Jtottenham</div>
+            <div class="hidden bottom summary"></div>
+          </div>
+          <div class="flex-column group">
+            <div class="members">
+              <span class="current">81</span> /
+              <span class="max">100</span>
+            </div>
+            <div class="hidden bottom">
+              <button class="view">view</button>
+            </div>
+          </div>
+        </div>
+        <div class="card flex-row">
+          <img
+            src="https://cdne-totv8-prod-southeastasia.azureedge.net/media/t4onkhdo/firstteam_profiles_202223_heungminson.png?anchor=center&mode=crop&quality=100&width=750"
+            class="book"
+          />
+          <div class="flex-column info">
+            <div class="title">Heung-Min Son</div>
+            <div class="author">tottenham</div>
+            <div class="hidden bottom summary"></div>
+          </div>
+          <div class="flex-column group">
+            <div class="members">
+              <span class="current">89</span> /
+              <span class="max">100</span>
+            </div>
+            <div class="hidden bottom">
+              <button class="view">view</button>
+            </div>
+          </div>
+        </div>
+        <div class="card flex-row">
+          <img
+            src="https://cdne-totv8-prod-southeastasia.azureedge.net/media/tkgczptd/firstteam_profiles_202223_harrykane.png?anchor=center&mode=crop&quality=100&width=750"
+            class="book"
+          />
+          <div class="flex-column info">
+            <div class="title">Harry Kane</div>
+            <div class="author">tottenham</div>
+            <div class="hidden bottom summary"></div>
+          </div>
+          <div class="flex-column group">
+            <div class="members">
+              <span class="current">89</span> /
+              <span class="max">100</span>
+            </div>
+            <div class="hidden bottom">
+              <button class="view">view</button>
+            </div>
+          </div>
+        </div>
+        <div class="card flex-row">
+          <img
+            src="https://cdne-totv8-prod-southeastasia.azureedge.net/media/5x0nw0o0/firstteam_profiles_202223_hugolloris.png?anchor=center&mode=crop&quality=100&width=750"
+            class="book"
+          />
+          <div class="flex-column info">
+            <div class="title">Hugo Lloris</div>
+            <div class="author">tottenham</div>
+            <div class="hidden bottom summary"></div>
+          </div>
+          <div class="flex-column group">
+            <div class="members">
+              <span class="current">87</span> /
+              <span class="max">100</span>
+            </div>
+            <div class="hidden bottom">
+              <button class="view">view</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 팝업 창 -->
+    <div id="modal-container">
+      <div class="modal-background">
+        <div class="modal">
+          <div class="head">
+            <div class="close">
+              <i class="fa-solid fa-xmark fa-rotate-180 fa-2xl"></i>
+            </div>
+            <div class="btn">
+              <button class="info-btn" id="change">info</button>
+              <button class="img-btn" id="change">image</button>
+            </div>
+          </div>
+          <!-- 그래프 -->
+          <div id="app">
+            <div class="graph">
+              <div class="average">
+                <h2>OVR</h2>
+                <p>{{this.average}}</p>
+              </div>
+              <canvas id="canvas" width="500" height="500"></canvas>
+            </div>
+          </div>
+          <!--  -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

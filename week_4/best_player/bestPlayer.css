@@ -1,0 +1,214 @@
+.bp-body {
+  width: 100vw;
+  height: 2000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bp-container {
+  width: 50%;
+  height: 100px;
+  position: relative;
+}
+.bp-container .bp-card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+
+.bp-container #manchester-united {
+    animation-name: teamRotate;
+    position: absolute;
+    transform: rotateZ(18deg);
+  }
+  .bp-container #liverpool{
+    position: absolute;
+    transform: rotateZ(36deg);
+  }
+  .bp-container #manchester-city{
+    position: absolute;
+    transform: rotateZ(54deg);
+  }
+  .bp-container #chelsea{
+    position: absolute;
+    transform: rotateZ(72deg);
+  }
+  .bp-container #arsenal{
+    position: absolute;
+    transform: rotateZ(90deg);
+  }
+  .bp-container #tottenham{
+    position: absolute;
+    transform: rotateZ(108deg);
+  }
+  .bp-container #newcastle{
+    position: absolute;
+    transform: rotateZ(126deg);
+  }
+  .bp-container #everton {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(144deg);
+  }
+  .bp-container #aston-villa {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(162deg);
+  }
+  .bp-container #brighton {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(180deg);
+  }
+  .bp-container #crystal-palace {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(198deg);
+  }
+  .bp-container #leeds-united {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(216deg);
+  }
+  .bp-container #fulham {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(234deg);
+  }
+  .bp-container #nottingham-forest {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(252deg);
+  }
+  .bp-container #leicester-city {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(270deg);
+  }
+  .bp-container #wolverhampton {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(288deg);
+  }
+  .bp-container #brentford {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(306deg);
+  }
+  .bp-container #westham-united {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(324deg);
+  }
+  .bp-container #southampton {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(342deg);
+  }
+  .bp-container #bournemouth {
+    animation: teamRotate;
+    position: absolute;
+    transform: rotateZ(360deg);
+  }
+
+
+.bp-container #manchester-united img{
+  position: absolute;
+  transform: rotateZ(18deg);
+}
+.bp-container #liverpool img{
+  position: absolute;
+  transform: rotateZ(36deg);
+}
+.bp-container #manchester-city img{
+  position: absolute;
+  transform: rotateZ(54deg);
+}
+.bp-container #chelsea img{
+  position: absolute;
+  transform: rotateZ(72deg);
+}
+.bp-container #arsenal img{
+  position: absolute;
+  transform: rotateZ(90deg);
+}
+.bp-container #tottenham img{
+  position: absolute;
+  transform: rotateZ(108deg);
+}
+.bp-container #newcastle img{
+  position: absolute;
+  transform: rotateZ(126deg);
+}
+.bp-container #everton  img{
+  position: absolute;
+  transform: rotateZ(144deg);
+}
+.bp-container #aston-villa  img{
+  position: absolute;
+  transform: rotateZ(162deg);
+}
+.bp-container #brighton  img{
+  position: absolute;
+  transform: rotateZ(180deg);
+}
+.bp-container #crystal-palace  img{
+  position: absolute;
+  transform: rotateZ(198deg);
+}
+.bp-container #leeds-united  img{
+  position: absolute;
+  transform: rotateZ(216deg);
+}
+.bp-container #fulham  img{
+  position: absolute;
+  transform: rotateZ(234deg);
+}
+.bp-container #nottingham-forest  img{
+  position: absolute;
+  transform: rotateZ(252deg);
+}
+.bp-container #leicester-city  img{
+  position: absolute;
+  transform: rotateZ(270deg);
+}
+.bp-container #wolverhampton  img{
+  position: absolute;
+  transform: rotateZ(288deg);
+}
+.bp-container #brentford  img{
+  position: absolute;
+  transform: rotateZ(306deg);
+}
+.bp-container #westham-united  img{
+  position: absolute;
+  transform: rotateZ(324deg);
+}
+.bp-container #southampton  img{
+  position: absolute;
+  transform: rotateZ(342deg);
+}
+.bp-container #bournemouth  img{
+  position: absolute;
+  transform: rotateZ(360deg);
+}
+
+
+
+  .bp-container img {
+    border: 1px solid black;
+    width: 60px;
+    height: 100px;
+  }
+
+
+  @keyframes teamRotate {
+    from {
+      transform: rotateZ(0deg), translate(50% 50%);
+    }
+    to {
+      transform: rotateZ(-360deg);
+    }
+}

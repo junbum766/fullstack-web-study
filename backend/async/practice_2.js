@@ -7,19 +7,28 @@ function changeColor(color) {
   });
 }
 
-changeColor("red")
-  .then(function (color) {
-    return changeColor("orange");
-  })
-  .then(function (color) {
-    return changeColor("yellow");
-  })
-  .then(function (color) {
-    return changeColor("green");
-  })
-  .then(function (color) {
-    return changeColor("blue");
-  })
-  .then(function (color) {
-    return changeColor("purple");
-  });
+// changeColor("red")
+//   .then(function (color) {
+//     return changeColor("orange");
+//   })
+//   .then(function (color) {
+//     return changeColor("yellow");
+//   })
+//   .then(function (color) {
+//     return changeColor("green");
+//   })
+//   .then(function (color) {
+//     return changeColor("blue");
+//   })
+//   .then(function (color) {
+//     return changeColor("purple");
+//   });
+
+  async function exec() {
+    await changeColor('red')
+    await changeColor('orange')
+    await changeColor('green')
+    await changeColor('blue')
+    await changeColor('purple')
+  }
+  exec();

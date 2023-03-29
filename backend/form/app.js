@@ -20,11 +20,14 @@ app.listen(PORT, () => {
 
 app.get("/getForm", function (req, res) { // 웹에 아이디 비번이 표시됨..
   console.log(req.query);
-  res.send("get 요청 성공!");
+  // res.send("get 요청 성공!");
+  res.render('result', {title: 'GET 요청 폼 결과 확인하기', id: Object.values(req.query)[0], pw: Object.values(req.query)[1]})
+  // req.query.id 이러기만 하면 됨..
 });
 
 app.post("/postForm", function (req, res) { // 웹에 아이디 비번을 가려줌
   console.log(req.body);
-//   console.log(req)
-  res.send("post 요청 성공!");
+  // console.log(req)
+  // res.send("post 요청 성공!");
+  res.render('result', {title: 'POST 요청 폼 결과 확인하기', id: Object.values(req.body)[0], pw: Object.values(req.body)[1]})
 });

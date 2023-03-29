@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <style>
+      form {
+      }
+      .box {
+        margin: 30px;
+        border: 2px solid black;
+        height: 50px;
+        width: 500px;
+        position: relative;
+      }
+      .text {
+        position: relative;
+        bottom: 10px;
+        left: 20px;
+        width: 30px;
+        height: 20px;
+        text-align: center;
+        background-color: white;
+      }
+      input {
+        position: relative;
+        margin-left: 20px;
+      }
+      label {
+        position: relative;
+        margin-left: 20px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <h1>실습 post로 정보 받기</h1>
+    <form action="/postForm" name="login1" method="post">
+      <label for="name">이름 </label><input type="text" name="name" id="name" required>
+      <div class="box">
+        <div class="text">성별</div>
+        <input type="radio" name="gender" id="male" value="male" required><label for="male">남자</label> 
+        <input type="radio" name="gender" id="female" value="female" required><label for="female">여자</label>
+      </div>
+      <div class="box">
+        <div class="text">날짜</div>
+        <input type="date" name="date">
+      </div>
+      <div class="box">
+        <div class="text">취미</div>
+        <input type="checkbox" name="habit" id="travel" value="travel"><label for="travel">여행</label>
+        <input type="checkbox" name="habit" id="fashion" value="fashion"><label for="fasfion">패션</label>
+        <input type="checkbox" name="habit" id="food" value="food"><label for="food">음식</label>
+      </div>
+      <div class="box">
+        <div class="text">선택</div>
+        <label for="color">좋아하는 색상</label><input type="color" name="like-color" id="color">
+        <label for="number">좋아하는 숫자</label><input type="text" name="like-number" id="number">
+      </div>
+        <button type="submit">회원가입</button>
+    </form>
+    <br> <br>
+    <a href="/">홈으로</a>
+
+  </body>
+</html>

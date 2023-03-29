@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>폼 전송 결과 페이지</title>
+    <style>
+      span {
+        color: blue;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><%= title%></h1>
+    <ul>
+      <%for (let i=0; i<Object.keys(info).length; i++) {%>
+        <%if (Object.keys(info)[i] == 'like-color') {%>
+          <li><div style="display: flex;"><%=Object.keys(info)[i]%>:<div style="width: 50px; height: 20px; background-color: <%=Object.values(info)[i]%>;"></div></div></li>
+        <%} else {%>
+      <li><%=Object.keys(info)[i]%>: <%=Object.values(info)[i]%></li>
+      <%}}%>
+    </ul>
+    <a href="/">홈으로</a>
+  </body>
+</html>

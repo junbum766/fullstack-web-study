@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 1500px;
+            height: 1000px;
+            background-color: pink;
+        }
+        .box {
+            display: inline-block;
+            width: 400px;
+            height: 400px;
+            margin: 5px;
+            background-color: black;
+        }
+        @media screen and (max-width:1300px) {
+            .container {
+                width: 900px;
+                background-color: yellow;
+            }           
+        }
+        @media screen and (max-width:800px) {
+            .container {
+                width: 500px;
+                background-color: blue;
+            }           
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</body>
+</html>

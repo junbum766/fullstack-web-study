@@ -5,11 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form_Dynamic</title>
+    <!-- jquery CDN for ajax -->
     <script
       src="https://code.jquery.com/jquery-3.6.4.min.js"
       integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
       crossorigin="anonymous"
     ></script>
+
+    <!-- axios CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <h1>동적 폼 전송 실습</h1>
@@ -30,68 +34,131 @@
 
       <button type="button" onclick="ajaxGet();">ajax get 버튼</button>
       <button type="button" onclick="ajaxPost();">ajax post 버튼</button>
+      <button type="button" onclick="axiosGet();">axios get 버튼</button>
+      <button type="button" onclick="axiosPost();">axios post 버튼</button>
     </form>
 
     <div class="result"></div>
 
     <script>
-      const resultBox = document.querySelector(".result");
+        const resultBox = document.querySelector(".result");
 
-      function ajaxGet() {
-        console.log("click ajaxGet btn!!!");
+        function ajaxGet() {
+          console.log("click ajaxGet btn!!!");
 
-        const form = document.forms["register"];
+          const form = document.forms["register"];
 
-        console.dir(form);
-        console.dir(form.name);
-        console.dir(form.gender);
-        console.dir(form.name.value);
-        console.dir(form.gender.value);
+          console.dir(form);
+          console.dir(form.name);
+          console.dir(form.gender);
+          console.dir(form.name.value);
+          console.dir(form.gender.value);
 
-        // 서버에 전송할 폼 입력값을 저장하는 객체
-        const formInfo = {
-          name: form.name.value,
-          gender: form.gender.value,
-        };
+          // 서버에 전송할 폼 입력값을 저장하는 객체
+          const formInfo = {
+            name: form.name.value,
+            gender: form.gender.value,
+          };
 
-        $.ajax({
-          url: "/ajax",
-          type: "GET",
-          data: formInfo,
-          success: function (data) {
-            console.log(data);
-            resultBox.textContent = `GET /ajax 요청 완료! ${data.name}님은 ${data.gender}이시죠?`;
-            resultBox.style.color = "blue";
-          },
-        });
+          $.ajax({
+            url: "/ajax",
+            type: "GET",
+            data: formInfo,
+            success: function (data) {
+              console.log(data);
+              resultBox.textContent = `GET /ajax 요청 완료! ${data.name}님은 ${data.gender}이시죠?`;
+              resultBox.style.color = "blue";
+            },
+          });
+        }
+
+        function ajaxPost() {
+          console.log("click ajaxPost btn!!!");
+
+          const form = document.forms["register"];
+
+          console.dir(form);
+          console.dir(form.name);
+          console.dir(form.gender);
+          console.dir(form.name.value);
+          console.dir(form.gender.value);
+
+          const formInfo = {
+            name: form.name.value,
+            gender: form.gender.value,
+          };
+
+          $.ajax({
+            url: "/ajax",
+            type: "POST",
+            data: formInfo,
+            success: function (data) {
+              console.log(data);
+              resultBox.textContent = `POST /ajax 요청 완료! ${data.name}님은 ${data.gender}이시죠?`;
+              resultBox.style.color = "red";
+            },
+          });
+        }
+
+        async function axiosGet() {
+          console.log("click ajaxPost btn!!!");
+
+          const form = document.forms["register"];
+
+          const formInfo = {
+            name: form.name.value,
+            gender: form.gender.value,
+          };
+
+          // axios는 Promise를 리턴하여 then 사용 가능
+          // axios({
+          //   url: "/axios",
+          //   type: "GET",
+          //   params: formInfo, // GET 요청은 params 에 저장
+          // }).then(function (response) {
+          //   console.log(response);
+          //   resultBox.textContent = `GET /axios 요청 완료! ${response.data.name}님은 ${response.data.gender}이시죠?`;
+          //   resultBox.style.color = "green";
+          // }).catch(function(error) {
+          //   console.log('ERROR!', error)
+          // })
+          try {
+          const response = await axios({
+            url: "/axios",
+            method: "GET",
+            params: formInfo,
+          });
+          console.log(response);
+          resultBox.textContent = `GET /axios 요청 완료! ${response.data.name}님은 ${response.data.gender}이시죠?`;
+          resultBox.style.color = "green";
+        } catch (error) {
+          console.log("ERROR", error);
+        }
       }
 
-      function ajaxPost() {
-        console.log("click ajaxPost btn!!!");
+      async function axiosPost() {
+          console.log("click axiosPost btn!!!");
 
-        const form = document.forms["register"];
+          const form = document.forms["register"];
 
-        console.dir(form);
-        console.dir(form.name);
-        console.dir(form.gender);
-        console.dir(form.name.value);
-        console.dir(form.gender.value);
+          const formInfo = {
+            name: form.name.value,
+            gender: form.gender.value,
+          };
 
-        const formInfo = {
-          name: form.name.value,
-          gender: form.gender.value,
-        };
-
-        $.ajax({
-          url: "/ajax",
-          type: "POST",
-          data: formInfo,
-          success: function (data) {
-            console.log(data);
-            resultBox.textContent = `POST /ajax 요청 완료! ${data.name}님은 ${data.gender}이시죠?`;
-            resultBox.style.color = "red";
-          },
-        });
+          try {
+          const response = await axios({
+            url: "/axios",
+            method: "POST",
+            data: formInfo,
+          });
+          console.log(response);
+          resultBox.textContent = `Post /axios 요청 완료! ${response.data.name}님은 ${response.data.gender}이시죠?`;
+          resultBox.style.color = "black";
+        } catch (error) {
+          console.log("ERROR", error);
+          resultBox.textContent = `error 발생 : ${error}`
+        }
       }
     </script>
   </body>

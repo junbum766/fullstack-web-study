@@ -86,7 +86,7 @@
       <label for="id">아이디</label>
       <input type="text" name="id" id="id" />
       <label for="pw">비번</label>
-      <input type="text" name="pw" id="pw" />
+      <input type="password" name="pw" id="pw" />
 
       <button type="button" onclick="axiosPost();">로그인</button>
     </form>
@@ -97,6 +97,7 @@
       const resultBox2 = document.querySelector(".result2");
 
       async function axiosGet() {
+        // const form = document.querySelector('') 이렇게 택하면 안된다
         const form = document.forms["register"];
 
         const formInfo = {

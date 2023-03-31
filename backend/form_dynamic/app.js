@@ -38,6 +38,18 @@ app.post("/axios", (req, res) => {
   res.send(req.body);
 });
 
+// 3-1. fetch get
+app.get("/fetch", (req, res) => {
+  console.log(req.query);
+  res.send(req.query);
+});
+
+// 3-2. fetch post
+app.post("/fetch", (req, res) => {
+  console.log(req.body);
+  res.send(req.body);
+});
+
 app.listen(PORT, () => {
   console.log(PORT + "port 가 연결되었습니다.");
   console.log('접속 : http://localhost:'+PORT);

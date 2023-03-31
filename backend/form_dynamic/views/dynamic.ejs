@@ -36,93 +36,96 @@
       <button type="button" onclick="ajaxPost();">ajax post 버튼</button>
       <button type="button" onclick="axiosGet();">axios get 버튼</button>
       <button type="button" onclick="axiosPost();">axios post 버튼</button>
+      <button type="button" onclick="fetchGet();">fetch get 버튼</button>
+      <button type="button" onclick="fetchPost();">fetch post 버튼</button>
     </form>
 
     <div class="result"></div>
 
     <script>
-        const resultBox = document.querySelector(".result");
+      const resultBox = document.querySelector(".result");
 
-        function ajaxGet() {
-          console.log("click ajaxGet btn!!!");
+      // ################################################## //
+      function ajaxGet() {
+        console.log("click ajaxGet btn!!!");
 
-          const form = document.forms["register"];
+        const form = document.forms["register"];
 
-          console.dir(form);
-          console.dir(form.name);
-          console.dir(form.gender);
-          console.dir(form.name.value);
-          console.dir(form.gender.value);
+        console.dir(form);
+        console.dir(form.name);
+        console.dir(form.gender);
+        console.dir(form.name.value);
+        console.dir(form.gender.value);
 
-          // 서버에 전송할 폼 입력값을 저장하는 객체
-          const formInfo = {
-            name: form.name.value,
-            gender: form.gender.value,
-          };
+        // 서버에 전송할 폼 입력값을 저장하는 객체
+        const formInfo = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
 
-          $.ajax({
-            url: "/ajax",
-            type: "GET",
-            data: formInfo,
-            success: function (data) {
-              console.log(data);
-              resultBox.textContent = `GET /ajax 요청 완료! ${data.name}님은 ${data.gender}이시죠?`;
-              resultBox.style.color = "blue";
-            },
-          });
-        }
+        $.ajax({
+          url: "/ajax",
+          type: "GET",
+          data: formInfo,
+          success: function (data) {
+            console.log(data);
+            resultBox.textContent = `GET /ajax 요청 완료! ${data.name}님은 ${data.gender}이시죠?`;
+            resultBox.style.color = "blue";
+          },
+        });
+      }
+      // ################################################## //
+      function ajaxPost() {
+        console.log("click ajaxPost btn!!!");
 
-        function ajaxPost() {
-          console.log("click ajaxPost btn!!!");
+        const form = document.forms["register"];
 
-          const form = document.forms["register"];
+        console.dir(form);
+        console.dir(form.name);
+        console.dir(form.gender);
+        console.dir(form.name.value);
+        console.dir(form.gender.value);
 
-          console.dir(form);
-          console.dir(form.name);
-          console.dir(form.gender);
-          console.dir(form.name.value);
-          console.dir(form.gender.value);
+        const formInfo = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
 
-          const formInfo = {
-            name: form.name.value,
-            gender: form.gender.value,
-          };
+        $.ajax({
+          url: "/ajax",
+          type: "POST",
+          data: formInfo,
+          success: function (data) {
+            console.log(data);
+            resultBox.textContent = `POST /ajax 요청 완료! ${data.name}님은 ${data.gender}이시죠?`;
+            resultBox.style.color = "red";
+          },
+        });
+      }
+      // ################################################## //
+      async function axiosGet() {
+        console.log("click ajaxPost btn!!!");
 
-          $.ajax({
-            url: "/ajax",
-            type: "POST",
-            data: formInfo,
-            success: function (data) {
-              console.log(data);
-              resultBox.textContent = `POST /ajax 요청 완료! ${data.name}님은 ${data.gender}이시죠?`;
-              resultBox.style.color = "red";
-            },
-          });
-        }
+        const form = document.forms["register"];
 
-        async function axiosGet() {
-          console.log("click ajaxPost btn!!!");
+        const formInfo = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
 
-          const form = document.forms["register"];
-
-          const formInfo = {
-            name: form.name.value,
-            gender: form.gender.value,
-          };
-
-          // axios는 Promise를 리턴하여 then 사용 가능
-          // axios({
-          //   url: "/axios",
-          //   type: "GET",
-          //   params: formInfo, // GET 요청은 params 에 저장
-          // }).then(function (response) {
-          //   console.log(response);
-          //   resultBox.textContent = `GET /axios 요청 완료! ${response.data.name}님은 ${response.data.gender}이시죠?`;
-          //   resultBox.style.color = "green";
-          // }).catch(function(error) {
-          //   console.log('ERROR!', error)
-          // })
-          try {
+        // axios는 Promise를 리턴하여 then 사용 가능
+        // axios({
+        //   url: "/axios",
+        //   type: "GET",
+        //   params: formInfo, // GET 요청은 params 에 저장
+        // }).then(function (response) {
+        //   console.log(response);
+        //   resultBox.textContent = `GET /axios 요청 완료! ${response.data.name}님은 ${response.data.gender}이시죠?`;
+        //   resultBox.style.color = "green";
+        // }).catch(function(error) {
+        //   console.log('ERROR!', error)
+        // })
+        try {
           const response = await axios({
             url: "/axios",
             method: "GET",
@@ -135,18 +138,18 @@
           console.log("ERROR", error);
         }
       }
-
+      // ################################################## //
       async function axiosPost() {
-          console.log("click axiosPost btn!!!");
+        console.log("click axiosPost btn!!!");
 
-          const form = document.forms["register"];
+        const form = document.forms["register"];
 
-          const formInfo = {
-            name: form.name.value,
-            gender: form.gender.value,
-          };
+        const formInfo = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
 
-          try {
+        try {
           const response = await axios({
             url: "/axios",
             method: "POST",
@@ -157,9 +160,54 @@
           resultBox.style.color = "black";
         } catch (error) {
           console.log("ERROR", error);
-          resultBox.textContent = `error 발생 : ${error}`
+          resultBox.textContent = `error 발생 : ${error}`;
         }
       }
+      // ################################################## //
+      function fetchGet() {
+        console.log('click fetchGet btn!!!')
+
+        const form = document.forms['register'];
+        const urlQuery = `?name=${form.name.value}&gender=${form.gender.value}`;
+
+        fetch(`/fetch${urlQuery}`, {
+          method: 'GET',
+        }).then(function(response) {
+          console.log(response)
+          return response.json() // json 형식으로 도착하는 응답 -> js object로 파싱
+        }).then(function(data) {
+          console.log('data>>>', data)
+          resultBox.textContent = `Get /fetch 요청 완료! ${data.name}님은 ${data.gender}이시죠?`;
+          resultBox.style.color = "pink";
+        })
+      }
+      // ################################################## //
+      function fetchPost() {
+        console.log('click fetchGet btn!!!')
+
+        const form = document.forms['register'];
+
+        const formInfo = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
+        
+        fetch(`/fetch`, {
+          method: 'POST',
+          headers: {
+            'Content-Type' : 'application/json',
+            // post 전송시에는 header 옵션을 통해서 json 포맷을 사용함을 알려줘야함
+          },
+          body: JSON.stringify(formInfo) // js object -> json
+        }).then(function(response) {
+          console.log(response)
+          return response.json()
+        }).then(function(data) {
+          resultBox.textContent = `Post /fetch 요청 완료! ${data.name}님은 ${data.gender}이시죠?`;
+          resultBox.style.color = "purple";
+        })
+      }
+      
     </script>
   </body>
 </html>

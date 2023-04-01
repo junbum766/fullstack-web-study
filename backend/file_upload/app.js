@@ -33,13 +33,34 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// single() : 하나의 파일 업로드 할 때 사용
-// single()의 매개변수 = input의 name과 일치
+// single() : 하나의 파일 업로드 할 때 사용, 매개변수 = input의 name과 일치
 app.post("/upload", uploadDetail.single("userfile"), (req, res) => {
   console.log(req.file); // 업로드한 파일 정보
   console.log(req.body); // 폼에 입력한 정보
   res.send("upload 완료");
 });
+
+// array() : 여러 파일 제출
+app.post("/upload/array", uploadDetail.array("userfile"), (req, res) => {
+  console.log(req.files);
+  console.log(req.body); 
+  res.send("upload 완료");
+});
+
+// fields() : 여러파일 각각 제출
+app.post("/upload/fields", uploadDetail.fields([{name: "userfile1"}, {name: "userfile2"}]), (req, res) => {
+  console.log(req.files);
+  console.log(req.body); 
+  res.send("upload 완료");
+});
+
+// dynamic 제출
+app.post("/upload/dynamic", uploadDetail.single("userfile"), (req, res) => {
+  console.log(req.files);
+  console.log(req.body); 
+  res.send("upload 완료");
+});
+dynamic
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

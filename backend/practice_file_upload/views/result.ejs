@@ -52,6 +52,7 @@
 <body>
     <div class="container">
         <img src=/<%=file.path%> alt="img">
+        console.log(<%=file.path%>)
         <p><%=body.id%>님 환영합니다!</p>
         <ul>
         <%for (let i=0; i<Object.values(body).length; i++) {%>

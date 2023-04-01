@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT = 3000;
+const PORT = 1234;
 
 // multer 미들웨어 사용허기
 const multer = require("multer"); // multer 불러오기
@@ -9,7 +9,8 @@ const path = require("path"); // path 불러오기 (내장 모듈) => 파일, �
 //   dest: "uploads/",
 // });
 
-const uploadDetail = multer({ // const upload 변수 대신 사용 가능
+const uploadDetail = multer({
+  // const upload 변수 대신 사용 가능
   storage: multer.diskStorage({
     destination(req, file, done) {
       done(null, "uploads/");
@@ -27,7 +28,7 @@ app.set("view engine", "ejs");
 app.use("/views", express.static(__dirname + "/views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("/uploads", express.static(__dirname + "uploads"));
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 app.get("/", (req, res) => {
   res.render("index");
@@ -43,24 +44,30 @@ app.post("/upload", uploadDetail.single("userfile"), (req, res) => {
 // array() : 여러 파일 제출
 app.post("/upload/array", uploadDetail.array("userfile"), (req, res) => {
   console.log(req.files);
-  console.log(req.body); 
+  console.log(req.body);
   res.send("upload 완료");
 });
 
 // fields() : 여러파일 각각 제출
-app.post("/upload/fields", uploadDetail.fields([{name: "userfile1"}, {name: "userfile2"}]), (req, res) => {
-  console.log(req.files);
-  console.log(req.body); 
-  res.send("upload 완료");
-});
+app.post(
+  "/upload/fields",
+  uploadDetail.fields([{ name: "userfile1" }, { name: "userfile2" }]),
+  (req, res) => {
+    console.log(req.files);
+    console.log(req.body);
+    res.send("upload 완료");
+  }
+);
 
 // dynamic 제출
-app.post("/upload/dynamic", uploadDetail.single("userfile"), (req, res) => {
-  console.log(req.files);
-  console.log(req.body); 
-  res.send("upload 완료");
-});
-dynamic
+app.post(
+  "/dynamicFile",
+  uploadDetail.single("dynamic-userfile"),
+  (req, res) => {
+    console.log(req.file);
+    res.send(req.file);
+  }
+);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

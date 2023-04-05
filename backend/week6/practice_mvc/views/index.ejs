@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>메인페이지</title>
-        <!-- axios CDN -->
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- axios CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <h1>axios POST 로그인</h1>
@@ -28,13 +28,12 @@
           id: form.id.value,
           pw: form.pw.value,
         };
-
-        try {
-          const response = await axios({
+  
+        axios({
             url: "/axios",
             method: "POST",
             data: formInfo,
-          });
+          }).then( function(response) {
           console.log(response);
           if (response.data.result) {
             resultBox.textContent = `${response.data.name}님 환영합니다`;
@@ -43,11 +42,30 @@
             resultBox.textContent = `아이디 또는 비밀번호가 틀렸습니다ㅠ`;
             resultBox.style.color = "red";
           }
-        } catch (error) {
+        }).catch (function(error) {
           console.log("ERROR", error);
           resultBox.textContent = `error 발생 : ${error}`;
-        }
+        })
       }
+      //   try {
+      //     const response = await axios({
+      //       url: "/axios",
+      //       method: "POST",
+      //       data: formInfo,
+      //     });
+      //     console.log(response);
+      //     if (response.data.result) {
+      //       resultBox.textContent = `${response.data.name}님 환영합니다`;
+      //       resultBox.style.color = "blue";
+      //     } else {
+      //       resultBox.textContent = `아이디 또는 비밀번호가 틀렸습니다ㅠ`;
+      //       resultBox.style.color = "red";
+      //     }
+      //   } catch (error) {
+      //     console.log("ERROR", error);
+      //     resultBox.textContent = `error 발생 : ${error}`;
+      //   }
+      // }
     </script>
   </body>
 </html>

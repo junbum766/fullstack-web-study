@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 3456;
+const PORT = 7500;
 
 app.set('view engine', 'ejs');
 app.use('/views', express.static(__dirname + '/views'));
@@ -8,7 +8,7 @@ app.use('/static', express.static(__dirname + '/static'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const indexRouter = require('./routes'); 
+const indexRouter = require('./routes');
 
 app.use('/', indexRouter) 
 
@@ -19,4 +19,4 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
   });
- 
+  

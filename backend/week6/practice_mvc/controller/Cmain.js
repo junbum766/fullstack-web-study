@@ -6,6 +6,7 @@ exports.main = (req, res) => {
 
 exports.axios = (req, res) => {
   let result;
+  // ################## practice 1 ################## //
   // for (let i = 0; i < User.getId().length; i++) { // 첨부터 끝까지 서치
   //   if (
   //     req.body.id == User.getId()[i].id &&
@@ -14,12 +15,12 @@ exports.axios = (req, res) => {
   //     result = true;
   //   }
   // }
+  
+  // ################## practice 2 ################## //
   let name;
   const list = User.users.split("\n");
   for (let i = 0; i < list.length; i++) {
     // 첨부터 끝까지 서치
-    console.log(list[i].split("//")[0], "aaa", list[i].split("//")[1], "aaa");
-    console.log(req.body.id, req.body.pw);
     if (
       req.body.id == list[i].split("//")[0] &&
       req.body.pw == list[i].split("//")[1]

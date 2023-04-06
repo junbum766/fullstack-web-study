@@ -13,8 +13,8 @@
     <form name="visitor-form">
       <fieldset>
         <legend>방명록 등록</legend>
-        <input type="text" id="name" placeholder="사용자 이름" /> <br />
-        <input type="text" id="comment" placeholder="방명록" /> <br />
+        <input type="text" id="name" onkeyup="enterkey()" placeholder="사용자 이름" /> <br />
+        <input type="text" id="comment" onkeyup="enterkey()" placeholder="방명록" /> <br />
         <div id="button-group">
           <button type="button" onClick="createVisitor();">등록</button>
         </div>
@@ -42,14 +42,26 @@
             <button type="button">수정</button>
           </td>
           <td>
-            <button type="button">삭제</button>
+            <button
+              type="button"
+              onclick="deleteVisitor(this, `<%=data[i].id%>`)"
+            >
+              삭제
+            </button>
           </td>
         </tr>
         <% } %>
       </tbody>
     </table>
     <script>
-      const tbody = document.querySelector('tbody');
+      const tbody = document.querySelector("tbody");
+
+      // 엔터 누를 시 등록
+      function enterkey() {
+        if (window.event.keyCode == 13) {
+          createVisitor();
+        }
+      }
 
       // 폼 [등록] 버튼 클릭시
       // - 테이블 데이터 추가
@@ -65,7 +77,7 @@
           },
         }).then((res) => {
           console.log(res);
-          
+
           const newVisitor = `
         <tr id="tr_${res.data.id}">
         <td>${res.data.id}</td>
@@ -77,14 +89,39 @@
           </button>
         </td>
         <td>
-          <button type="button">
+          <button type="button" onclick='deleteVisitor(this, ${res.data.id})'>
             삭제
           </button>
         </td>
       </tr>`;
-      tbody.insertAdjacentHTML("beforeend", newVisitor);
-      // innerHTML : 내부 코드를 덮어 씌움
+          tbody.insertAdjacentHTML("beforeend", newVisitor); // innerHTML : 내부 코드를 덮어 씌움
+          document.querySelector("#name").value = "";
+          document.querySelector("#comment").value = "";
         });
+      }
+
+      function deleteVisitor(obj, id) {
+        console.log("obj", obj);
+        console.log("id", id);
+        if (!confirm("정말로 삭제하겠습니까?")) {
+          return;
+        } else {
+          axios({
+            method: "DELETE",
+            url: "/visitor/delete",
+            data: {
+              id: id,
+            },
+          }).then((res) => {
+            console.log(res.data);
+            if (!res.data.result) {
+              return;
+            } else {
+              document.querySelector(`#tr_${res.data.id}`).remove();
+              // obj.parentElement.parentElement.remove(); // 위와 같음
+            }
+          });
+        }
       }
     </script>
   </body>

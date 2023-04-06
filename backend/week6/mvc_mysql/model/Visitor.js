@@ -46,3 +46,16 @@ exports.postVisitor = (data, callback) => {
     callback(rows);
   })
 }
+
+exports.deleteVisitor = (data, callback) => {
+  console.log(data);
+
+  const sql = `DELETE FROM visitor WHERE id=${data};`
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    console.log('Visitor.js: ', rows);
+    callback(true);
+  })
+}

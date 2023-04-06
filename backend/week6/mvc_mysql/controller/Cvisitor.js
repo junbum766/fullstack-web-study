@@ -42,3 +42,23 @@ exports.deleteVisitor = (req, res) => {
     res.send({result: result, id: req.body.id});
   });
 };
+
+// (5) GET /visitor/get
+exports.getVisitor = (req, res) => {
+  console.log(req.query);
+
+  Visitor.getVisitor(req.query.id, (result) => {
+    console.log("get >>", result);
+    res.send(result);
+  });
+};
+
+// (6) EDIT /visitor/edit
+exports.patchVisitor = (req, res) => {
+  console.log(req.body);
+
+  Visitor.patchVisitor(req.body, (result) => {
+    console.log("edit >>", result);
+    res.send(true);
+  });
+};

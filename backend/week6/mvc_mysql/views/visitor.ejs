@@ -13,8 +13,20 @@
     <form name="visitor-form">
       <fieldset>
         <legend>방명록 등록</legend>
-        <input type="text" id="name" onkeyup="enterkey()" placeholder="사용자 이름" /> <br />
-        <input type="text" id="comment" onkeyup="enterkey()" placeholder="방명록" /> <br />
+        <input
+          type="text"
+          id="name"
+          onkeyup="enterkey()"
+          placeholder="사용자 이름"
+        />
+        <br />
+        <input
+          type="text"
+          id="comment"
+          onkeyup="enterkey()"
+          placeholder="방명록"
+        />
+        <br />
         <div id="button-group">
           <button type="button" onClick="createVisitor();">등록</button>
         </div>
@@ -39,7 +51,12 @@
           <td><%= data[i].name %></td>
           <td><%= data[i].comment %></td>
           <td>
-            <button type="button">수정</button>
+            <button
+              type="button"
+              onclick="editVisitor(this, `<%=data[i].id%>`)"
+            >
+              수정
+            </button>
           </td>
           <td>
             <button
@@ -79,21 +96,13 @@
           console.log(res);
 
           const newVisitor = `
-        <tr id="tr_${res.data.id}">
-        <td>${res.data.id}</td>
-        <td>${res.data.name}</td>
-        <td>${res.data.comment}</td>
-        <td>
-          <button type="button">
-            수정
-          </button>
-        </td>
-        <td>
-          <button type="button" onclick='deleteVisitor(this, ${res.data.id})'>
-            삭제
-          </button>
-        </td>
-      </tr>`;
+          <tr id="tr_${res.data.id}">
+            <td>${res.data.id}</td>
+            <td>${res.data.name}</td>
+            <td>${res.data.comment}</td>
+            <td><button type="button" onclick="editVisitor(this, ${res.data.id})">수정</button></td>
+            <td><button type="button" onclick="deleteVisitor(this, ${res.data.id})">삭제</button></td>
+          </tr>`;
           tbody.insertAdjacentHTML("beforeend", newVisitor); // innerHTML : 내부 코드를 덮어 씌움
           document.querySelector("#name").value = "";
           document.querySelector("#comment").value = "";
@@ -122,6 +131,67 @@
             }
           });
         }
+      }
+
+      // 수정 버튼 -> form input 값 넣기, 변경과 취소 버튼 보여주기
+      function editVisitor(obj, id) {
+        console.log(id);
+
+        axios({
+          method: "GET",
+          url: "/visitor/get",
+          params: {
+            id: id,
+          },
+        }).then((res) => {
+          console.log(res.data);
+
+          const form = document.forms["visitor-form"];
+          form.name.value = res.data.name;
+          form.comment.value = res.data.comment;
+
+          const btns = `<button type="button" onClick="editDo(${id});">수정</button>
+          <button type="button" onClick="cancel();">취소</button>`;
+
+          document.querySelector("#button-group").innerHTML = btns;
+        });
+      }
+
+      function cancel() {
+        const form = document.forms["visitor-form"];
+        form.name.value = "";
+        form.comment.value = "";
+        const btns = `<button type="button" onClick="createVisitor();">등록</button>`;
+        document.querySelector("#button-group").innerHTML = btns;
+      }
+
+      function editDo(id) {
+        const form = document.forms["visitor-form"];
+
+        axios({
+          method: "PATCH",
+          url: "/visitor/edit",
+          data: {
+            id: id,
+            name: form.name.value,
+            comment: form.comment.value,
+          },
+        }).then((res) => {
+          console.log(res.data);
+
+          alert(res.data);
+
+          const children = document.querySelector(`#tr_${id}`).children;
+          children[1].textContent = form.name.value;
+          children[2].textContent = form.comment.value;
+
+          form.name.value = "";
+          form.comment.value = "";
+
+          const btns = `<button type="button" onClick="createVisitor();">등록</button>`;
+
+          document.querySelector("#button-group").innerHTML = btns;
+        });
       }
     </script>
   </body>

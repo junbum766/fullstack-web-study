@@ -59,3 +59,29 @@ exports.deleteVisitor = (data, callback) => {
     callback(true);
   })
 }
+
+exports.getVisitor = (id, callback) => {
+  console.log(id);
+
+  const sql = `SELECT * FROM visitor WHERE id=${id};`
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    console.log('Visitor.js: ', rows);
+    callback(rows[0]);
+  })
+}
+
+exports.patchVisitor = (data, callback) => {
+  console.log(data);
+
+  const sql = `UPDATE visitor SET name='${data.name}', comment='${data.comment}' WHERE id=${data.id}`
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    console.log('Visitor.js: ', rows);
+    callback(rows);
+  })
+}

@@ -26,6 +26,7 @@ exports.toProfile = (req, res) => {
 exports.infoEdit = (req, res) => {
   User.infoEdit(req.body, (result) => {
     res.send(result); // true
+    // res.end(); // 딱히 보낼 데이터가 없으면 이렇게 끝내도 된다.
   });
 };
 

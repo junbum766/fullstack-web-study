@@ -111,7 +111,8 @@
           alert("입력하지 않은 정보가 있습니다.");
         }
 
-        axios({
+        const response = await axios({ // 서버에 갔다와야 하니 await을 통해 기다려주자
+          // 받아올게 없으면 response 변수 없이 바로 await ~~ 하면 된다.
           method: "POST",
           url: "/user/signup",
           data: {
@@ -119,8 +120,8 @@
             pw: pw,
             name: name,
           },
-        }).then((res) => {
-          console.log("회원가입 정보: ", res.data);
+        }).then((response) => {
+          console.log("회원가입 정보: ", response.data);
           alert("회원가입이 완료되었습니다.\n로그인 페이지로 이동합니다.");
           form.userid.value = "";
           form.password.value = "";

@@ -51,7 +51,7 @@ exports.infoDelete = (userid, cb) => {
 };
 
 exports.searchUser = (data, cb) => {
-  const sql = "select * from user";
+  const sql = "select * from user"; // "select * from user where userid='' and pw='' LIMIT 1" // 데이터베이스에서 찾아올 수 있다.
   conn.query(sql, (err, rows) => {
     if (err) {
       throw err;

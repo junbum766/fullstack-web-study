@@ -9,14 +9,14 @@ router.get('/signup', controller.signUp);
 
 router.post('/signup', controller.createUser);
 
-// router.post('/profile', controller.toSignin);
+router.post('/profile', controller.toProfile);
 
-// router.post('/profile/edit', controller.infoEdit);
+router.post('/profile/edit', controller.infoEdit);
 
-// router.post('/profile/delete', controller.infoDelete);
+router.post('/profile/delete', controller.infoDelete);
 
-// router.get('/signin', controller.signIn);
+router.get('/signin', controller.signIn);
 
-// router.post('/signin', controller.searchUser);
+router.post('/signin', controller.searchUser);
 
 module.exports = router;

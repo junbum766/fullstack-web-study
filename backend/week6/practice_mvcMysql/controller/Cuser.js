@@ -15,14 +15,44 @@ exports.createUser = (req, res) => {
   });
 };
 
-// exports.toSignin = (req, res) => {};
+exports.toProfile = (req, res) => {
+  console.log('profile 정보: ', req.body);
 
-// exports.infoEdit = (req, res) => {};
+  User.toProfile(req.body.userid, (result) => {
+    res.render("profile", {result: result[0]});
+  })
+};
 
-// exports.infoDelete = (req, res) => {};
+exports.infoEdit = (req, res) => {
+  User.infoEdit(req.body, (result) => {
+    res.send(result); // true
+  });
+};
 
-// exports.signIn = (req, res) => {
-//   res.render("signin");
-// };
+exports.infoDelete = (req, res) => {
+  User.infoDelete(req.body.id, (result) => {
+    res.send(result); // true
+  });
+};
 
-// exports.searchUser = (req, res) => {};
+exports.signIn = (req, res) => {
+  res.render("signin");
+};
+
+exports.searchUser = (req, res) => {
+  console.log("로그인 정보: ", req.body);
+
+  User.searchUser(req.body, (result) => {
+    console.log("모든 회원 정보: ", result);
+
+    let login = false;
+    for (let i = 0; i < result.length; i++) {
+      if (req.body.id == result[i].userid && req.body.pw == result[i].pw) {
+        login = true;
+        res.send(login);
+        return;
+      } 
+    }
+    res.send(login);
+  });
+};

@@ -1,32 +1,118 @@
 <!DOCTYPE html>
 <html lang="ko">
   <%- include('include/include', { title: '로그인' })%>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+      position: relative;
+      bottom: 200px;
+    }
+    h1 {
+      color: skyblue;
+    }
+    .container {
+      border: 2px solid rgb(198, 197, 197);
+      border-radius: 15px;
+      width: 500px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .pw,
+    .id {
+      width: 40px;
+      color: rgb(69, 151, 183);
+      display: flex;
+      justify-content: center;
+    }
+    label {
+      font-size: 20px;
+    }
+    input {
+      width: 430px;
+      height: 30px;
+      border-color: rgba(218, 218, 218, 0.588);
+      border-radius: 5px;
+    }
+    button {
+      background-color: skyblue;
+      width: 490px;
+      height: 50px;
+      border-radius: 7px;
+      color: white;
+      border: #03c75a;
+      position: relative;
+      top: 85px;
+    }
+  </style>
   <body>
-    <h1>로그인</h1>
+    <h1>Login</h1>
+
     <!-- 
       [로그인] 버튼을 클릭하면 profile.ejs에서 특정 유저 정보를 보여주어야 하기 때문에 
       userid 정보를 value에 저장(POST /user/signin 요청의 응답을 받은 후 수행)하여
       폼(input)이 보이지 않도록 hidden 처리함
     -->
-    <form name="form_info" action="/user/profile" method="POST">
-      <input type="hidden" name="userid" />
-    </form>
+    <div class="container">
+      <form name="form_info" action="/user/profile" method="POST">
+        <input type="hidden" name="userid" />
+      </form>
+      <form name="form_login">
+        <div style="display: flex;">
+          <div class="id">
+            <label for="userid">ID</label>
+          </div>
+          <input id="userid" type="text" name="userid" required /><br />
+        </div>
+        <div style="display: flex;">
+          <div class="pw">
+            <label for="password">PW</label>
+          </div>
+          <input id="password" type="password" name="pw" required /><br />
+        </div>
+        <button type="button" onclick="login();">로그인</button>
+      </form>
 
-    <form name="form_login">
-      <label for="userid">ID</label>
-      <input id="userid" type="text" name="userid" required /><br />
-      <label for="password">Password</label>
-      <input id="password" type="password" name="pw" required /><br />
-      <button type="button" onclick="login();">Login</button>
-    </form>
-
-    <!-- TODO: href 속성값 설정하기 -->
-    <a href="#">Register</a>
+      <!-- TODO: href 속성값 설정하기 -->
+    </div>
+    <a
+      href="/user/signup"
+      style="text-decoration: none; color: rgb(125, 124, 124); margin-top: 10px"
+      >회원가입</a
+    >
 
     <script>
       // TODO: [Login] 버튼 클릭시 서버에 로그인 요청하기
       // POST /user/signin
-      function login() {}
+      function login() {
+        const form = document.forms["form_login"];
+        const form_info = document.forms["form_info"];
+        form_info.userid.value = form.userid.value;
+
+        axios({
+          method: "POST",
+          url: "/user/signin",
+          data: {
+            id: form.userid.value,
+            pw: form.password.value,
+          },
+        }).then((res) => {
+          console.log(res.data);
+          if (res.data) {
+            alert("로그인에 성공하였습니다.");
+            form_info.submit();
+          } else {
+            alert("로그인에 실패하였습니다.\n다시 입력해 주세요.");
+          }
+        });
+      }
     </script>
   </body>
 </html>

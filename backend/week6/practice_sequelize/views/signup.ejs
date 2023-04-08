@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/include', { title: '회원가입' })%>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+      position: relative;
+      bottom: 100px;
+    }
+    h1 {
+      color: skyblue;
+    }
+
+    .container {
+      border: 2px solid rgb(198, 197, 197);
+      border-radius: 15px;
+      width: 450px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .pw,
+    .id,
+    .name {
+      width: 50px;
+      color: rgb(69, 151, 183);
+      position: relative;
+      left: 20px;
+    }
+    label {
+      font-size: 20px;
+    }
+    input {
+      width: 90%;
+      height: 30px;
+      border-color: rgba(218, 218, 218, 0.588);
+      border-radius: 5px;
+      margin-inline: 3%;
+    }
+    button {
+      background-color: skyblue;
+      width: 95%;
+      height: 50px;
+      border-radius: 7px;
+      color: white;
+      border: #03c75a;
+      position: relative;
+      top: 30px;
+      left: 3%;
+    }
+    @media screen and (max-width: 600px) {
+      .container {
+        width: 60vw;
+      }
+    }
+  </style>
+  <body>
+    <h1>signup</h1>
+    <div class="container">
+      <form name="form_register" style="width: 100%">
+        <div>
+          <div class="id">
+            <label for="userid">ID</label>
+          </div>
+          <input id="userid" type="text" name="userid" required /><br />
+        </div>
+        <div>
+          <div class="pw">
+            <label for="password">Password</label>
+          </div>
+          <input id="password" type="password" name="pw" required /><br />
+        </div>
+        <div>
+          <div class="name">
+            <label for="nickname">Name </label>
+          </div>
+          <input id="nickname" type="text" name="name" required /><br />
+        </div>
+        <button type="button" onclick="register();">Register</button>
+      </form>
+      <!-- TODO: href 속성값 설정하기 -->
+    </div>
+    <a
+      href="/user/signin"
+      style="text-decoration: none; position: relative; top: 20px"
+      >Login</a
+    >
+
+    <script>
+      // TODO: [Register] 버튼 클릭시 서버에 회원가입 요청하기
+      // POST /user/signup
+      async function register() {
+        const form = document.forms["form_register"];
+
+        // if (!form.checkValidity()) {
+        //   form.reportValidity();
+        //   return;
+        // }
+        const id = form.userid.value.trim();
+        const pw = form.password.value.trim();
+        const name = form.nickname.value.trim();
+
+        if (id == "" || pw == "" || name == "") {
+          alert("입력하지 않은 정보가 있습니다.");
+        }
+        console.log(id, pw, name)
+        axios({
+          method: "POST",
+          url: "/user/signup",
+          data: {
+            id: id,
+            pw: pw,
+            name: name,
+          },
+        }).then((response) => {
+          console.log("회원가입 정보: ", response.data);
+          alert("회원가입이 완료되었습니다.\n로그인 페이지로 이동합니다.");
+          form.userid.value = "";
+          form.password.value = "";
+          form.nickname.value = "";
+        });
+
+        document.location.href = "/user/signin"; // get 요청으로 바로 이 주소로 이동시켜줌
+      }
+    </script>
+  </body>
+</html>

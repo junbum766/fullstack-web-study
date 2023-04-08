@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/include', { title: '회원 정보' })%>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+      position: relative;
+      bottom: 100px;
+    }
+    h1 {
+      color: skyblue;
+    } 
+
+    .container {
+      border: 2px solid rgb(198, 197, 197);
+      border-radius: 15px;
+      width: 500px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .pw,
+    .id,
+    .name {
+      width: 50px;
+      color: rgb(69, 151, 183);
+      position: relative;
+      left: 10px;
+    }
+    label {
+      font-size: 20px;
+    }
+    input {
+      width: 95%;
+      margin-inline: 5px;
+      height: 30px;
+      border-color: rgba(218, 218, 218, 0.588);
+      border-radius: 5px;
+    }
+    .btn {
+      width: 100%;
+      margin-inline: 3px;
+    }
+    button {
+      background-color: skyblue;
+      width: 240px;
+      height: 50px;
+      border-radius: 7px;
+      color: white;
+      border: #03c75a;
+      position: relative;
+      top: 30px;
+    }
+    @media screen and (max-width: 600px) {
+      .container {
+        width: 60vw;
+      }
+      button {
+        width: 48%;
+      }
+      input {
+        width: 90%;
+      }
+    }
+  </style>
+  <body>
+    <h1>회원 정보</h1>
+    <!-- TODO: href 속성값 설정하기 -->
+
+    <div class="container">
+      <!-- TODO: 각 input의 value 값을 로그인 한 사람의 정보로 채우기 -->
+      <form name="form_profile" style="width: 100%">
+        <div>
+          <div class="id">
+            <label for="userid">ID</label>
+          </div>
+          <input type="hidden" id="id" value="<%=result.userid%>" />
+          <!-- readonly: userid는 수정 불가능 (조건임) -->
+          <input
+            id="userid"
+            type="text"
+            name="userid"
+            value="<%=result.userid%>"
+            readonly
+          />
+        </div>
+        <div>
+          <div class="pw">
+            <label for="password">Password</label>
+          </div>
+          <input
+            id="password"
+            type="password"
+            name="pw"
+            value="<%=result.pw%>"
+            required
+          />
+        </div>
+        <div>
+          <div class="name">
+            <label for="name">Name</label>
+          </div>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            value="<%=result.name%>"
+            required
+          />
+        </div>
+        <div class="btn">
+          <button type="button" onclick="profileEdit();">Edit</button>
+          <button type="button" onclick="profileDelete();">Delete</button>
+        </div>
+      </form>
+    </div>
+    <a
+      href="/user"
+      style="text-decoration: none; margin-top: 10px; color: rgb(169, 168, 168)"
+      >HOME</a
+    >
+
+    <script>
+      // TODO: [Login] 버튼 클릭시 서버에 회원 정보 수정 요청하기
+      // POST /user/profile/edit
+      function profileEdit() {
+        const form = document.forms["form_profile"];
+
+        axios({
+          method: "POST",
+          url: "/user/profile/edit",
+          data: {
+            id: form.userid.value,
+            pw: form.password.value,
+            name: form.name.value,
+          },
+        }).then(() => {
+          alert("수정이 완료되었습니다.");
+        });
+      }
+
+      // TODO: [Login] 버튼 클릭시 서버에 회원 정보 삭제 요청하기
+      // POST /user/profile/delete
+      function profileDelete() {
+        const form = document.forms["form_profile"];
+
+        axios({
+          method: "POST",
+          url: "/user/profile/delete",
+          data: {
+            id: form.userid.value,
+          },
+        }).then(() => {
+          alert("회원 정보 삭제가 완료되었습니다.\n홈 화면으로 이동합니다.");
+          document.location.href = "/user";
+        });
+      }
+    </script>
+  </body>
+</html>

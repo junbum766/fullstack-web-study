@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/include', { title: '실습 | 회원가입/로그인 구현' })%>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+      position: relative;
+      bottom: 200px;
+      background-color: skyblue;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+      margin: 20px;
+      font-size: 30px;
+
+    }
+    a:hover {
+      color: white;
+      transition-duration: 1s;
+    }
+  </style>
+  <body>
+    <h1 style="color: white; font-size: 50px;">실습</h1>
+    <div class="container">
+      <!-- TODO: href 속성값 설정하기 -->
+      <a href="/user/visitor">방명록</a>
+      <a href="/user/signup">회원가입</a>
+      <a href="/user/signin">로그인</a>
+    </div>
+  </body>
+</html>

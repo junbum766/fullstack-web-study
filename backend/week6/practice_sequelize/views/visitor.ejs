@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('include/include', { title: '방명록' })%>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+      position: relative;
+      bottom: 100px;
+      background-color: white;
+    }
+    .container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    legend {
+      color: rgb(184, 183, 183);
+      font-size: 20px;
+      font-weight: 700;
+    }
+    fieldset {
+      border-radius: 10px;
+      border: 2px solid rgb(184, 183, 183);
+      width: 250px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background-color: white;
+    }
+    input {
+      border-radius: 10px;
+      border-color: rgb(184, 183, 183);
+      width: 90%;
+      height: 30px;
+    }
+    button {
+      width: 90%;
+      border-radius: 5px;
+      border-color: rgb(184, 183, 183);
+      background-color: skyblue;
+      color: white;
+      margin-inline: 5px;
+    }
+    #button-group {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      top: 30px;
+    }
+    .register {
+      width: 95%;
+      height: 50px;
+    }
+    table {
+      border: 2px solid rgb(184, 183, 183);
+      border-radius: 10px;
+      width: 400px;
+      color: rgb(137, 136, 136);
+      font-weight: 700;
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <form name="visitor-form">
+        <fieldset>
+          <legend>방명록 등록</legend>
+          <input
+            type="text"
+            id="name"
+            onkeyup="enterkey()"
+            placeholder="사용자 이름"
+          />
+          <input
+            type="text"
+            id="comment"
+            onkeyup="enterkey()"
+            placeholder="방명록"
+          />
+          <div id="button-group">
+            <button class="register" type="button" onClick="createVisitor();">등록</button>
+          </div>
+        </fieldset>
+      </form>
+      <br />
+
+      <table border="1" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>작성자</th>
+            <th>방명록</th>
+            <th>수정</th>
+            <th>삭제</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let i = 0; i < data.length; i++) { %>
+          <tr id="tr_<%= data[i].id %>">
+            <td><%= data[i].id %></td>
+            <td><%= data[i].name %></td>
+            <td><%= data[i].comment %></td>
+            <td>
+              <button
+                type="button"
+                onclick="editVisitor(this, `<%=data[i].id%>`)"
+              >
+                수정
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                onclick="deleteVisitor(this, `<%=data[i].id%>`)"
+              >
+                삭제
+              </button>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      const tbody = document.querySelector("tbody");
+
+      // 엔터 누를 시 등록
+      function enterkey() {
+        if (window.event.keyCode == 13) {
+          createVisitor();
+        }
+      }
+
+      // 폼 [등록] 버튼 클릭시
+      // - 테이블 데이터 추가
+      function createVisitor() {
+        const form = document.forms["visitor-form"];
+
+        axios({
+          method: "POST",
+          url: "/user/visitor/write",
+          data: {
+            name: form.name.value,
+            comment: form.comment.value,
+          },
+        }).then((res) => {
+          console.log(res);
+          const newVisitor = `
+          <tr id="tr_${res.data.id}">
+            <td>${res.data.id}</td>
+            <td>${res.data.name}</td>
+            <td>${res.data.comment}</td>
+            <td><button type="button" onclick="editVisitor(this, ${res.data.id})">수정</button></td>
+            <td><button type="button" onclick="deleteVisitor(this, ${res.data.id})">삭제</button></td>
+          </tr>`;
+          tbody.insertAdjacentHTML("beforeend", newVisitor); // innerHTML : 내부 코드를 덮어 씌움
+          document.querySelector("#name").value = "";
+          document.querySelector("#comment").value = "";
+        });
+      }
+
+      function deleteVisitor(obj, id) {
+        console.log("obj", obj);
+        console.log("id", id);
+        if (!confirm("정말로 삭제하겠습니까?")) {
+          return;
+        } else {
+          axios({
+            method: "DELETE",
+            url: "/user/visitor/delete",
+            data: {
+              id: id,
+            },
+          }).then(() => {
+            obj.parentElement.parentElement.remove(); // 위와 같음
+          });
+        }
+      }
+
+      // 수정 버튼 -> form input 값 넣기, 변경과 취소 버튼 보여주기
+      function editVisitor(obj, id) {
+        console.log("id: ", id);
+
+        axios({
+          method: "GET",
+          url: "/user/visitor/get",
+          params: {
+            id: id,
+          },
+        }).then((res) => {
+          const form = document.forms["visitor-form"];
+          form.name.value = res.data.name;
+          form.comment.value = res.data.comment;
+
+          const btns = `<button type="button" style="width: 130px; height: 50px;" onClick="editDo('${id}');">수정</button>
+          <button type="button" style="width: 130px; height: 50px;" onClick="cancel();">취소</button>`;
+
+          document.querySelector("#button-group").innerHTML = btns;
+        });
+      }
+
+      function cancel() {
+        const form = document.forms["visitor-form"];
+        form.name.value = "";
+        form.comment.value = "";
+        const btns = `<button type="button" onClick="createVisitor();">등록</button>`;
+        document.querySelector("#button-group").innerHTML = btns;
+      }
+
+      function editDo(id) {
+        const form = document.forms["visitor-form"];
+
+        axios({
+          method: "PATCH",
+          url: "/user/visitor/edit",
+          data: {
+            id: id,
+            name: form.name.value,
+            comment: form.comment.value,
+          },
+        }).then(() => {
+          const children = document.querySelector(`#tr_${id}`).children;
+          children[1].textContent = form.name.value;
+          children[2].textContent = form.comment.value;
+
+          form.name.value = "";
+          form.comment.value = "";
+
+          const btns = `<button type="button" onClick="createVisitor();">등록</button>`;
+
+          document.querySelector("#button-group").innerHTML = btns;
+        });
+      }
+    </script>
+  </body>
+</html>

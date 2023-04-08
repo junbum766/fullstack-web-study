@@ -121,14 +121,8 @@
             data: {
               id: id,
             },
-          }).then((res) => {
-            console.log(res.data);
-            if (!res.data.result) {
-              return;
-            } else {
-              document.querySelector(`#tr_${res.data.id}`).remove();
-              // obj.parentElement.parentElement.remove(); // 위와 같음
-            }
+          }).then(() => {
+            obj.parentElement.parentElement.remove(); // 위와 같음
           });
         }
       }
@@ -144,8 +138,6 @@
             id: id,
           },
         }).then((res) => {
-          console.log(res.data);
-
           const form = document.forms["visitor-form"];
           form.name.value = res.data.name;
           form.comment.value = res.data.comment;
@@ -176,11 +168,7 @@
             name: form.name.value,
             comment: form.comment.value,
           },
-        }).then((res) => {
-          console.log(res.data);
-
-          alert(res.data);
-
+        }).then(() => {
           const children = document.querySelector(`#tr_${id}`).children;
           children[1].textContent = form.name.value;
           children[2].textContent = form.comment.value;

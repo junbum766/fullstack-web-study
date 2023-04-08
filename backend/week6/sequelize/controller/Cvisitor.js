@@ -1,4 +1,5 @@
-const Visitor = require("../model/Visitor");
+// models 변수 값 = models/index.js에서 export 한 db 객체
+const models = require("../models"); // 알아서 index.js를 찾아감
 
 // (1) GET / => localhost:PORT/
 exports.main = (req, res) => {
@@ -7,58 +8,54 @@ exports.main = (req, res) => {
 
 // (2) GET /visitor => localhost:PORT/visitor
 exports.getVisitors = (req, res) => {
-  // [before]
-  // console.log(Visitor.getVisitors());
-  // res.render('visitor', { data: Visitor.getVisitors() });
-
-  // [after] mysql db 연결!
-  Visitor.getVisitors((result) => {
-    console.log("Cvisitor.js >>", result);
-    // => [ {}, {}, {} ]
+  // select * from visitor; 수행
+  models.Visitor.findAll().then((result) => {
+    console.log("findAll >>", result);
     res.render("visitor", { data: result });
   });
 };
 
 // (3) POST /visitor/write
 exports.postVisitor = (req, res) => {
-  console.log(req.body);
-
-  Visitor.postVisitor(req.body, (result) => {
-    console.log("Cvisitor.js >>", result); // model 코드에서 데이터를 추가한 결과인 rows.insertId
-    res.send({
-      id: result.insertId,
-      name: req.body.name,
-      comment: req.body.comment,
-    });
+  models.Visitor.create({
+    name: req.body.name,
+    comment: req.body.comment,
+  }).then((result) => {
+    console.log("create >>", result);
+    res.send(result);
   });
 };
 
 // (4) DELETE /visitor/delete
 exports.deleteVisitor = (req, res) => {
-  console.log(req.body);
-
-  Visitor.deleteVisitor(req.body.id, (result) => {
-    console.log("delete >>", result);
-    res.send({result: result, id: req.body.id});
+  // delete from visitor where id=${id}
+  models.Visitor.destroy({
+    where: { id: req.body.id },
+  }).then(() => {
+    res.end();
   });
 };
 
 // (5) GET /visitor/get
 exports.getVisitor = (req, res) => {
-  console.log(req.query);
-
-  Visitor.getVisitor(req.query.id, (result) => {
-    console.log("get >>", result);
+  models.Visitor.findOne({
+    where: { id : req.query.id },
+  }).then((result) => {
     res.send(result);
-  });
+  })
 };
 
 // (6) EDIT /visitor/edit
 exports.patchVisitor = (req, res) => {
-  console.log(req.body);
-
-  Visitor.patchVisitor(req.body, (result) => {
-    console.log("edit >>", result);
-    res.send(true);
-  });
+  models.Visitor.update({
+    name: req.body.name,
+    comment: req.body.comment,
+  },
+  {
+    where: {
+      id: req.body.id,
+    }
+  }).then((result) => {
+    console.log('update >>', result);
+  })
 };

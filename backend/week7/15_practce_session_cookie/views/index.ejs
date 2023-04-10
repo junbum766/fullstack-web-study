@@ -28,14 +28,18 @@
         left: 0;
         right: 0;
         margin: 0 auto;
+        border-radius: 15px;
       }
       .header {
         position: relative;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         height: 30px;
         background-color: blue;
         color: white;
+        padding-inline: 10px;
+        border-radius: 15px 15px 0px 0px;
       }
       .main {
         height: 243px;
@@ -44,18 +48,32 @@
         align-items: center;
       }
       .main .text {
-        width: 80%;
-        height: 80%;
+        width: 85%;
+        height: 85%;
         background-color: bisque;
+        border-radius: 15px;
+        padding: 10px;
       }
       .footer {
         width: 98%;
         height: 30px;
         font-size: 14px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        bottom: 3px;
+      }
+      .checkbox-text {
+        position: relative;
       }
       #cancel {
         position: relative;
         cursor: pointer;
+        font-size: 25px;
+      }
+      #cancel:hover {
+        transition-duration: 2s;
+        transform: rotateZ(360deg);
       }
     </style>
   </head>
@@ -71,7 +89,7 @@
         <div class="text">어쩌구저쩌구~</div>
       </div>
       <div class="footer">
-        <input type="checkbox" onclick="cookieSet()" />5초 그만보기
+        <input type="checkbox" id="box" onclick="cookieSet()"/><label for="box" class="checkbox-text">5초 그만보기</label> 
       </div>
     </div>
 

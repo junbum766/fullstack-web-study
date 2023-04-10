@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cookie</title>
+    <!-- axios cdn 불러오기 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      body {
+        position: relative;
+      }
+      body.act {
+        background-color: rgba(0, 0, 0, 0.398);
+      }
+      .popup {
+        display: none;
+      }
+      .popup.act {
+        display: block;
+        width: 300px;
+        height: 300px;
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+      }
+      .header {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        height: 30px;
+        background-color: blue;
+        color: white;
+      }
+      .main {
+        height: 243px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .main .text {
+        width: 80%;
+        height: 80%;
+        background-color: bisque;
+      }
+      .footer {
+        width: 98%;
+        height: 30px;
+        font-size: 14px;
+      }
+      #cancel {
+        position: relative;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body <%if (!cookie) {%>class="act"<%}%>>
+    <h1>Cookie 실습</h1>
+
+    <div <%if (!cookie) {%>class="popup act"<%} else {%> class='popup'<%}%> >
+      <div class="header">
+        <div>안내</div>
+        <div id="cancel">x</div>
+      </div>
+      <div class="main">
+        <div class="text">어쩌구저쩌구~</div>
+      </div>
+      <div class="footer">
+        <input type="checkbox" onclick="cookieSet()" />5초 그만보기
+      </div>
+    </div>
+
+
+    <script>
+      document.querySelector("#cancel").addEventListener("click", () => {
+        document.querySelector(".popup.act").classList.remove("act");
+        document.querySelector("body.act").classList.remove("act");
+      });
+
+      function cookieSet() {
+        axios({
+            method: 'GET',
+            url: '/setCookie',
+        })
+      }
+    </script>
+  </body>
+</html>

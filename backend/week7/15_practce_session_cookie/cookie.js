@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/setCookie", (req, res) => {
-  res.cookie("popup1", "popup 오늘 하루 보지 않음", cookieConfing);
+  res.cookie("popup1", "noPopup", cookieConfing);
   res.send("쿠키 설정 완료!!");
 });
 

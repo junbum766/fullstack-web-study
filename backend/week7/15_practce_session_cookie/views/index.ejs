@@ -77,10 +77,12 @@
       }
     </style>
   </head>
-  <body <%if (!cookie) {%>class="act"<%}%>>
+  <body <%if (!cookie) {%>
+    class="act"<%}%>>
     <h1>Cookie 실습</h1>
 
-    <div <%if (!cookie) {%>class="popup act"<%} else {%> class='popup'<%}%> >
+    <div <%if (!cookie) {%>
+      class="popup act"<%} else {%> class='popup'<%}%> >
       <div class="header">
         <div>안내</div>
         <div id="cancel">x</div>
@@ -89,23 +91,26 @@
         <div class="text">어쩌구저쩌구~</div>
       </div>
       <div class="footer">
-        <input type="checkbox" id="box" onclick="cookieSet()"/><label for="box" class="checkbox-text">5초 그만보기</label> 
+        <input type="checkbox" id="box" /><label
+          for="box"
+          class="checkbox-text"
+          >5초 그만보기</label
+        >
       </div>
     </div>
-
 
     <script>
       document.querySelector("#cancel").addEventListener("click", () => {
         document.querySelector(".popup.act").classList.remove("act");
         document.querySelector("body.act").classList.remove("act");
-      });
 
-      function cookieSet() {
-        axios({
-            method: 'GET',
-            url: '/setCookie',
-        })
-      }
+        if (document.querySelector("#box").checked) {
+          axios({
+            method: "GET",
+            url: "/setCookie",
+          });
+        }
+      });
     </script>
   </body>
 </html>

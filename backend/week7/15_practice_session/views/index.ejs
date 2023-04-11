@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/include', { title: '실습 | 회원가입/로그인 구현' })%>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    header {
+      background-color: skyblue;
+      width: 100%;
+      height: 65px;
+      display: flex;
+      align-items: center;
+    }
+
+    .menus {
+      width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-inline: 20px;
+    }
+    .resposive {
+      display: none;
+    }
+    ul {
+      display: flex;
+    }
+    .title {
+      font-size: 30px;
+    }
+    li {
+      list-style: none;
+      color: black;
+      margin: 20px;
+      font-size: 20px;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    a:hover {
+      color: white;
+      transition-duration: 1s;
+    }
+    main {
+      position: relative;
+      margin: 20px;
+    }
+    main h1,
+    main p {
+      margin: 20px;
+    }
+    .welcome {
+      font-size: 30px;
+      font-weight: 700;
+      animation: rainbow 5s infinite linear;
+    }
+
+    @media screen and (max-width: 550px) {
+      .menus {
+        display: none;
+      }
+      .resposive {
+        display: flex;
+        flex-direction: row-reverse;
+        width: 90%;
+      }
+      .res-menu-btn {
+        font-size: 30px;
+        cursor: pointer;
+      }
+      .res-menu {
+        position: relative;
+        display: none;
+        top: 70px;
+        right: 50px;
+      }
+      ul {
+        display: flex;
+        margin: 0;
+      }
+      li {
+        width: 80px;
+        margin: 5px;
+      }
+
+    }
+
+    @keyframes rainbow {
+      0% {
+        color: red;
+      }
+      10% {
+        color: orange;
+      }
+      23% {
+        color: yellow;
+      }
+      36% {
+        color: yellowgreen;
+      }
+      49% {
+        color: green;
+      }
+      62% {
+        color: blue;
+      }
+      74% {
+        color: indigo;
+      }
+      86% {
+        color: purple;
+      }
+      100% {
+        color: red;
+      }
+    }
+  </style>
+  <body>
+    <header>
+      <p class="title">CodinOn</p>
+      <div class="menus">
+        <ul>
+          <li>menu1</li>
+          <li>menu2</li>
+        </ul>
+        <ul>
+          <li><a href="/user/signin">로그인</a></li>
+          <li><a href="/user/signup">회원가입</a></li>
+        </ul>
+      </div>
+      <div class="menus resposive">
+        <p class="res-menu-btn">=</p>
+        <div class="res-menu">
+          <ul>
+            <li>menu1</li>
+            <li>menu2</li>
+          </ul>
+          <ul>
+            <li><a href="/user/signin">로그인</a></li>
+            <li><a href="/user/signup">회원가입</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main>
+      <h1>Session 실습</h1>
+      <p>여기는 home 입니다~</p>
+      <% if (id != undefined) {%>
+      <p class="welcome"><%=id%>님 환영합니다~~~~</p>
+      <%} else {%>
+      <p>로그인을 해주세요!</p>
+      <%}%>
+    </main>
+    <script>
+      document.querySelector(".res-menu-btn").addEventListener("click", () => {
+        document.querySelector(".res-menu").setAttribute("style", "display: flex;");
+        document.querySelector('main').setAttribute("style", "top: 50px;");
+      });
+    </script>
+  </body>
+</html>

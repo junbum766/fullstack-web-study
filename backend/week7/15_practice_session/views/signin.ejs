@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/include', { title: '로그인' })%>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+      position: relative;
+      bottom: 100px;
+    }
+    h1 {
+      color: skyblue;
+    }
+    .container {
+      border: 2px solid rgb(198, 197, 197);
+      border-radius: 15px;
+      width: 450px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .pw,
+    .id {
+      width: 40px;
+      color: rgb(69, 151, 183);
+      display: flex;
+      justify-content: center;
+    }
+    label {
+      font-size: 20px;
+    }
+    input {
+      width: 92%;
+      height: 30px;
+      border-color: rgba(218, 218, 218, 0.588);
+      border-radius: 5px;
+      margin-inline: 3%;
+    }
+    button {
+      background-color: skyblue;
+      width: 95%;
+      height: 50px;
+      border-radius: 7px;
+      color: white;
+      border: #03c75a;
+      position: relative;
+      top: 40px;
+      left: 3%;
+    }
+    form {
+      width: 100%;
+    }
+    @media screen and (max-width: 600px) {
+      .container {
+        width: 60vw;
+      }
+    }
+  </style>
+  <body>
+    <h1>Login</h1>
+
+    <div class="container">
+      <form name="form_info" action="/user" method="GET">
+        <input type="hidden" name="userid" />
+      </form>
+      <form name="form_login">
+        <div style="display: flex; flex-direction: column; width: 100%">
+          <div class="id">
+            <label for="userid">ID</label>
+          </div>
+          <input id="userid" type="text" name="userid" required /><br />
+        </div>
+        <div style="display: flex; flex-direction: column">
+          <div class="pw">
+            <label for="password">PW</label>
+          </div>
+          <input id="password" type="password" name="pw" required /><br />
+        </div>
+        <button type="button" onclick="login();">login</button>
+      </form>
+
+    </div>
+    <a
+      href="/user/signup"
+      style="text-decoration: none; color: rgb(125, 124, 124); margin-top: 10px"
+      >signup</a
+    >
+    <a
+      href="/user"
+      style="text-decoration: none; color: rgb(125, 124, 124); margin-top: 10px"
+      >home</a
+    >
+
+    <script>
+      // TODO: [Login] 버튼 클릭시 서버에 로그인 요청하기
+      // POST /user/signin
+      function login() {
+        const form = document.forms["form_login"];
+        const form_info = document.forms["form_info"];
+        form_info.userid.value = form.userid.value;
+
+        axios({
+          method: "POST",
+          url: "/user/signin",
+          data: {
+            id: form.userid.value,
+            pw: form.password.value,
+          },
+        }).then((res) => {
+          console.log(res.data);
+          if (res.data) {
+            alert("로그인에 성공하였습니다.");
+            form_info.submit();
+          } else {
+            alert("로그인에 실패하였습니다.\n다시 입력해 주세요.");
+            form.reset();
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

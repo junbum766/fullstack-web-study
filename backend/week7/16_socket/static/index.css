@@ -1,0 +1,50 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.chat-box {
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 400px;
+  height: 500px;
+  background-color: skyblue;
+  overflow-y: auto;
+}
+.input-container {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+}
+.input-container input {
+  width: 300px;
+}
+.chatR {
+  display: flex;
+  align-items: center;
+  padding-inline: 10px;
+  margin-inline: 10px;
+  width: max-content; /* 넓이를 콘텐츠에 맞게 맞춰줌 */
+  height: 30px;
+  background-color: yellow;
+  border-radius: 10px;
+  margin-left: auto; /* 맨 오른쪽으로 보내줌 */
+  margin-top: 5px;
+}
+.chatL {
+  display: flex;
+  align-items: center;
+  padding-inline: 10px;
+  margin-inline: 10px;
+  width: max-content;
+  height: 30px;
+  background-color: rgb(242, 240, 240);
+  border-radius: 10px;
+  margin-top: 5px;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- socket.io CDN -->
+    <script
+      src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+      integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/static/index.css" />
+    <title>Chat</title>
+  </head>
+  <body>
+    <h1>채팅</h1>
+    <!-- [실습1] 각 버튼을 누를 때마다 서버로 메세지 보내기 -->
+    <!-- <button onclick="sayHello();">hello</button>
+    <button onclick="sayStudy();">study</button>
+    <button onclick="sayBye();">bye</button>
+    <p id="form-server"></p> -->
+
+    <!-- [실습2] -->
+    <div class="container">
+      <div class="chat-box">
+        <!-- test -->
+        <div class="chatR">
+            야야야야야
+        </div>
+        <div class="chatL">
+            왜 뭐
+        </div>
+      </div>
+      <div class="input-container">
+        <input type="text" id="chat-input" onkeyup="enterkey()"/>
+        <button onclick="chatSubmit();">전송</button>
+      </div>
+    </div>
+    <script src="/static/index.js"></script>
+  </body>
+</html>

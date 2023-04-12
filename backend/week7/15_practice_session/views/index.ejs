@@ -5,7 +5,6 @@
     * {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
     header {
       background-color: skyblue;
@@ -13,6 +12,7 @@
       height: 65px;
       display: flex;
       align-items: center;
+      padding-inline: 20px;
     }
 
     .menus {
@@ -36,6 +36,7 @@
       color: black;
       margin: 20px;
       font-size: 20px;
+      cursor: pointer;
     }
     a {
       text-decoration: none;
@@ -58,6 +59,10 @@
       font-weight: 700;
       animation: rainbow 5s infinite linear;
     }
+    .logout:hover {
+      color: white;
+      transition-duration: 1s;
+    }
 
     @media screen and (max-width: 550px) {
       .menus {
@@ -66,17 +71,13 @@
       .resposive {
         display: flex;
         flex-direction: row-reverse;
-        width: 90%;
-      }
-      .res-menu-btn {
-        font-size: 30px;
-        cursor: pointer;
+        justify-content: space-around;
+        width: 100%;
+        margin: 0;
+        background-color: rgb(193, 224, 236);
       }
       .res-menu {
-        position: relative;
-        display: none;
-        top: 70px;
-        right: 50px;
+        display: flex;
       }
       ul {
         display: flex;
@@ -86,7 +87,6 @@
         width: 80px;
         margin: 5px;
       }
-
     }
 
     @keyframes rainbow {
@@ -121,6 +121,7 @@
   </style>
   <body>
     <header>
+      <%console.log(id)%>
       <p class="title">CodinOn</p>
       <div class="menus">
         <ul>
@@ -128,24 +129,31 @@
           <li>menu2</li>
         </ul>
         <ul>
+          <%if (id != undefined) {%>
+          <li><a href="/user/destroy" class="logout">로그아웃</a></li>
+          <%} else {%>
           <li><a href="/user/signin">로그인</a></li>
+          <%}%>
           <li><a href="/user/signup">회원가입</a></li>
         </ul>
       </div>
-      <div class="menus resposive">
-        <p class="res-menu-btn">=</p>
-        <div class="res-menu">
-          <ul>
-            <li>menu1</li>
-            <li>menu2</li>
-          </ul>
-          <ul>
-            <li><a href="/user/signin">로그인</a></li>
-            <li><a href="/user/signup">회원가입</a></li>
-          </ul>
-        </div>
-      </div>
     </header>
+    <div class="menus resposive">
+      <div class="res-menu">
+        <ul>
+          <li>menu1</li>
+          <li>menu2</li>
+        </ul>
+        <ul>
+          <%if (id != undefined) {%>
+          <li><a href="/user/destroy" class="logout">로그아웃</a></li>
+          <%} else {%>
+          <li><a href="/user/signin">로그인</a></li>
+          <%}%>
+          <li><a href="/user/signup">회원가입</a></li>
+        </ul>
+      </div>
+    </div>
     <main>
       <h1>Session 실습</h1>
       <p>여기는 home 입니다~</p>
@@ -154,12 +162,7 @@
       <%} else {%>
       <p>로그인을 해주세요!</p>
       <%}%>
+      <p>(menu1과 menu2는 아무 기능도 없습니다)</p>
     </main>
-    <script>
-      document.querySelector(".res-menu-btn").addEventListener("click", () => {
-        document.querySelector(".res-menu").setAttribute("style", "display: flex;");
-        document.querySelector('main').setAttribute("style", "top: 50px;");
-      });
-    </script>
   </body>
 </html>

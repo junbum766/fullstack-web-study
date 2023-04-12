@@ -1,17 +1,23 @@
 // TODO: 라우트 설정
-const express = require('express');
-const controller = require('../controller/Cuser')
+const express = require("express");
+const controller = require("../controller/Cuser");
 const router = express.Router();
 
-router.get('/', controller.user);
+router.get("/", controller.user);
 
-router.get('/signup', controller.signUp);
+router.post("/", controller.signinToUser);
 
-router.post('/signup', controller.createUser);
+router.get("/signup", controller.signUp);
 
-router.get('/signin', controller.signIn);
+router.post("/signup", controller.createUser);
 
-router.post('/signin', controller.searchUser);
+router.get("/signin", controller.signIn);
+
+router.post("/signin", controller.searchUser);
+
+router.get("/toIndex", controller.toIndex);
+
+router.get("/destroy", controller.destroySession);
 
 
 module.exports = router;

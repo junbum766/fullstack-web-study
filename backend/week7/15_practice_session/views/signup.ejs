@@ -89,12 +89,12 @@
     </div>
     <a
       href="/user/signin"
-      style="text-decoration: none; position: relative; top: 20px"
+      style="text-decoration: none; color: rgb(125, 124, 124); margin-top: 10px"
       >Login</a
     >
     <a
       href="/user"
-      style="text-decoration: none; position: relative; top: 20px"
+      style="text-decoration: none; color: rgb(125, 124, 124); margin-top: 10px"
       >home</a
     >
 
@@ -103,19 +103,14 @@
       // POST /user/signup
       async function register() {
         const form = document.forms["form_register"];
-
-        // if (!form.checkValidity()) {
-        //   form.reportValidity();
-        //   return;
-        // }
         const id = form.userid.value.trim();
         const pw = form.password.value.trim();
         const name = form.nickname.value.trim();
 
-        if (id == "" || pw == "" || name == "") {
-          alert("입력하지 않은 정보가 있습니다.");
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
         }
-        console.log(id, pw, name)
         axios({
           method: "POST",
           url: "/user/signup",
@@ -125,14 +120,18 @@
             name: name,
           },
         }).then((response) => {
-          console.log("회원가입 정보: ", response.data);
-          alert("회원가입이 완료되었습니다.\n로그인 페이지로 이동합니다.");
-          form.userid.value = "";
-          form.password.value = "";
-          form.nickname.value = "";
+          if (response.data == "exist") {
+            alert("이미 존재하는 id 입니다.\n다시 입력해주세요.");
+            form.userid.value = "";
+          } else {
+            console.log("회원가입 정보: ", response.data);
+            alert("회원가입이 완료되었습니다.\n로그인 페이지로 이동합니다.");
+            form.userid.value = "";
+            form.password.value = "";
+            form.nickname.value = "";
+            document.location.href = "/user/signin"; // get 요청으로 바로 이 주소로 이동시켜줌
+          }
         });
-
-        document.location.href = "/user/signin"; // get 요청으로 바로 이 주소로 이동시켜줌
       }
     </script>
   </body>

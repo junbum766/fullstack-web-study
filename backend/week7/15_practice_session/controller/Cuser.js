@@ -23,8 +23,8 @@ exports.createUser = (req, res) => {
       userid: req.body.id,
     },
   }).then((result) => {
-    console.log('중복 확인', result);
-    if (result.length == 0 ) {
+    console.log("중복 확인", result);
+    if (result.length == 0) {
       models.User.create({
         userid: req.body.id,
         pw: req.body.pw,
@@ -34,10 +34,9 @@ exports.createUser = (req, res) => {
         res.send(result);
       });
     } else {
-      res.send('exist');
+      res.send("exist");
     }
   });
-  
 };
 
 exports.signIn = (req, res) => {
@@ -61,16 +60,25 @@ exports.searchUser = (req, res) => {
 };
 
 exports.destroySession = (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      throw err;
-    }
-    console.log("...", req.query.des);
-    res.render("index", { id: undefined });
-  });
+  const userSession = req.session.name;
+  if (userSession !== undefined) {
+    req.session.destroy((err) => {
+      if (err) {
+        throw err;
+      }
+      console.log("...", req.query.des);
+      res.redirect("/user");
+    });
+  } else {
+    res.send(
+      `<script>alert('잘못된 접근입니다.');document.location.href = '/user'</script>`
+    );
+  }
 };
 
 exports.toIndex = (res, req) => {
   console.log(req.session);
-  res.render("index", { id: undefined });
+  res.redirect("/user");
+
+  // res.render("index", { id: undefined });
 };

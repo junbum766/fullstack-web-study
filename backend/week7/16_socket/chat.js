@@ -64,7 +64,10 @@ io.on("connection", (socket) => {
       io.emit("ioChat", sendData);
     } else {
       console.log("direct >>>", data.to, "에게 <<<");
-      io.to(data.to).emit("ioChat", sendData);
+      console.log("direct >>>", data.myNick, "가<<<");
+      if (data.myNick !== nickObj[data.to]) { // 나한테 두번 안가도록
+        io.to(data.to).emit("ioChat", sendData);
+      }
       socket.emit("ioChat", sendData); // io.to 는 목적지에만 가기 때문에, 나 자신의 채팅 창에도 반영하기 위해서 socket.emit을 추가한다.
     }
   });

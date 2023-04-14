@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- socket.io CDN -->
+    <script
+      src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+      integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/static/index.css" />
+    <title>Chat</title>
+  </head>
+  <body>
+    <h1>채팅</h1>
+    <div class="entry-box">
+      <input type="text" id="nickname" placeholder="Nickname" autofocus />
+      <button type="button" id="nickname-btn" onclick="entry();">입장</button>
+    </div>
+    <div class="container d-none">
+      <div class="chat-box"></div>
+      <div class="input-container">
+        <select name="nick-list" id="nick-list"></select
+        >에게
+        <input type="text" id="chat-input" onkeyup="enterkey()" autofocus />
+        <button type="button" id="chat-btn" onclick="chatSubmit();">전송</button>
+        <select name="mode" id="mode" onchange="modeChange()" >
+          <!-- onchange="modeChange()" -->
+          <option value="chat">채팅</option>
+          <option value="game">끝말잇기</option>
+        </select>
+      </div>
+    </div>
+    <script src="/static/index.js"></script>
+  </body>
+</html>

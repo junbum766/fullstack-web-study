@@ -1,0 +1,127 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.chat-box {
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 400px;
+  height: 500px;
+  background-color: skyblue;
+  overflow-y: auto;
+}
+.input-container {
+  display: flex;
+  width: max-content;
+}
+.input-container input {
+  width: 250px;
+  margin-inline: 10px;
+}
+.input-container select {
+  width: 60px;
+}
+.chatR {
+  display: flex;
+  align-items: center;
+  padding-inline: 10px;
+  margin-inline: 10px;
+  width: max-content; /* 넓이를 콘텐츠에 맞게 맞춰줌 */
+  height: 30px;
+  background-color: yellow;
+  border-radius: 10px;
+  margin-left: auto; /* 맨 오른쪽으로 보내줌 */
+  margin-top: 5px;
+}
+.chatR-dir {
+  display: flex;
+  align-items: center;
+  padding-inline: 10px;
+  margin-inline: 10px;
+  width: max-content; /* 넓이를 콘텐츠에 맞게 맞춰줌 */
+  height: 30px;
+  background-color: pink;
+  border-radius: 10px;
+  margin-left: auto; /* 맨 오른쪽으로 보내줌 */
+  margin-top: 5px;
+}
+.chatL {
+  display: flex;
+  align-items: center;
+  padding-inline: 10px;
+  margin-inline: 10px;
+  width: max-content;
+  height: 30px;
+  background-color: rgb(242, 240, 240);
+  border-radius: 10px;
+  margin-top: 5px;
+}
+.chatL-dir {
+  display: flex;
+  align-items: center;
+  padding-inline: 10px;
+  margin-inline: 10px;
+  width: max-content;
+  height: 30px;
+  background-color: pink;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+/* [실습3] */
+.notice {
+  color: #005397;
+  text-align: center;
+  font-size: 12px;
+}
+.entry-box {
+  margin-bottom: 30px;
+}
+.d-none {
+  display: none;
+}
+
+/* 끝말잇기 */
+#mode {
+  margin-left: 20px;
+}
+.entAlert {
+  color: red;
+  text-align: center;
+  font-size: 12px;
+  margin-block: 5px;
+}
+.loading-msg {
+  color: #fb5b53;
+  text-align: center;
+  font-size: 15px;
+  margin-block: 5px;
+}
+.loading-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.loading {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #fb5b53;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin .5s linear 0s infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to{
+    transform: rotate(359deg);
+  }
+}

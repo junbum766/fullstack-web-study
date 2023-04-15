@@ -1,12 +1,17 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const PORT = 8000;
+const corsOptions = {
+  origin: 'https://stdict.korean.go.kr/api/search.do',
+}
 
 app.set("view engine", "ejs");
 app.use("/views", express.static(__dirname + "/views"));
 app.use("/static", express.static(__dirname + "/static"));
+app.use(cors());
 
 app.get("/", function (req, res) {
   console.log("client connected");
@@ -103,15 +108,15 @@ io.on("connection", (socket) => {
     }
   });
 
-  // 단어 리스트 전송
-  socket.on("reqWords", () => {
-    socket.emit("sendWords", words);
+  // 게임 모드인 경우에 단어 검사, 게임 진행
+  socket.on("gameOn", (word) => {
+    words.push(word); // 단어 리스트에 응답 단어 추가
+    console.log("단어 리스트 >>> ", words);
+    socket.emit("wordCheck", {pastWord: words[words.length-2], recentWord: words[words.length-1]}); // words[-1]와 words[-2] 비교
   });
 
   // 다음 단어가 무슨 자로 시작해야 하는지 공지
   socket.on("nextWord", (data) => {
-    words.push(data.input); // 단어 리스트에 응답 단어 추가
-    console.log("단어 리스트 >>> ", words);
     const msg = `${data.input.slice(-1)} 다음에 올 단어를 써주세요`;
     io.emit("nextWordAlert", { msg: msg, sender: data.myNick });
   });

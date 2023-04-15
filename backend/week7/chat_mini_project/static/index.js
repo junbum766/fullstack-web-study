@@ -21,41 +21,11 @@ function chatSubmit() {
   if (trimedInput !== "") {
     socket.emit("chat", { input: input, myNick: myNick, to: to });
     document.querySelector("#chat-input").value = "";
+    console.log("인풋 체크...", input);
 
     // 게임 모드인 경우
     if (mode === "game") {
-      console.log("input check...", input);
-      socket.emit("reqWords");
-      socket.on("sendWords", (words) => {
-        console.log("sendWords 몇번 통과?", words);
-        let thisUrl = `https://stdict.korean.go.kr/api/search.do?&key=B57FCC9C9D19F96B18E55D7B21F8B434&req_type=json&advanced=y&pos=1&type_search=search&q=${input}`;
-
-        //fetch를 활용한 allOrigins방식 사용
-        fetch(
-          `https://api.allorigins.win/raw?url=${encodeURIComponent(thisUrl)}`
-        )
-          .then((response) => {
-            if (response.ok) return response.json();
-            throw new Error("Network response was not ok.");
-          })
-          .then((data) => {
-            console.log("단어 체크...", words[words.length - 1], input);
-            if (data.channel == undefined) {
-              // 패배 시나리오 1) 표준어 x
-              alert(`${input} 은 표준어가 아닙니다!`);
-              socket.emit("lose", myNick);
-            } else if (input.slice(0, 1) != words[words.length - 1].slice(-1)) {
-              // 패배 시나리오 2) 첫자가 앞에 마지막자와 다르면 패배
-              socket.emit("lose", myNick);
-            } else {
-              // 성공 시나리오) list에 단어를 저장 후 단어를 넘겨줌
-              socket.emit("nextWord", { input: input, myNick: myNick });
-            }
-          })
-          .catch((err) => {
-            console.log("api 요청 오류", err);
-          });
-      });
+      socket.emit("gameOn", input);
     }
   }
 }
@@ -208,6 +178,44 @@ socket.on("gameStart", (data) => {
     document.querySelector("#chat-input").disabled = false;
     document.querySelector("#chat-btn").disabled = false;
   }
+});
+// 게임 중, 단어 검사
+socket.on("wordCheck", (words) => {
+  // words.pastWord : 이전 단어, words.recentWord : 현재 단어
+  console.log("sendWords 몇번 통과?", words);
+
+  let thisUrl = `https://stdict.korean.go.kr/api/search.do?&key=B57FCC9C9D19F96B18E55D7B21F8B434&req_type=json&advanced=y&pos=1&type_search=search&q=${words.recentWord}`;
+
+  axios({
+    method: 'GET',
+    url: thisUrl,
+  })
+    .then((response) => {
+      console.log(response);
+      if (response.ok) return response.json();
+      throw new Error("Network response was not ok.");
+    })
+    .then((data) => {
+      console.log(
+        "단어 체크...",
+        words.pastWord.slice(-1),
+        words.recentWord.slice(0, 1)
+      );
+      if (data.channel == undefined) {
+        // 패배 시나리오 1) 표준어 x
+        alert(`${words.recentWord} 은 표준어가 아닙니다!`);
+        socket.emit("lose", myNick);
+      } else if (words.pastWord.slice(-1) != words.recentWord.slice(0, 1)) {
+        // 패배 시나리오 2) 첫자가 앞에 마지막자와 다르면 패배
+        socket.emit("lose", myNick);
+      } else {
+        // 성공 시나리오) list에 단어를 저장 후 단어를 넘겨줌
+        socket.emit("nextWord", { input: words.recentWord, myNick: myNick });
+      }
+    })
+    .catch((err) => {
+      console.log("api 요청 오류", err);
+    });
 });
 
 // 다음 단어가 뭘로 시작해야 하는지 공지

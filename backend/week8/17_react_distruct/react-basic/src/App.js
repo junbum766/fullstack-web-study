@@ -46,7 +46,7 @@ import PropTypes from "prop-types";
 //       <hr />
 
 //       <h1>문제 4</h1>
-//       <div>{a > b ? "a가 b보다 더 큽니다" : "b가 a보다 더 큽니다"}</div>
+//       <div>{a > b && "a가 b보다 더 큽니다"}</div>
 //       <hr />
 
 //       <h1>문제 5</h1>

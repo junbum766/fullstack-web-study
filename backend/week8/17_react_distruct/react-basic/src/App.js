@@ -78,37 +78,57 @@ import PropTypes from "prop-types";
 // }
 
 // practice 2
-Food.defaultProps = {
-  name: "디폴트",
-};
+// Food.defaultProps = {
+//   name: "디폴트",
+// };
 
-Food.propTypes = {
-  name: PropTypes.string.isRequired,
-};
+// Food.propTypes = {
+//   name: PropTypes.string.isRequired,
+// };
 
-function Food(props) {
-  return (
-    <>
-      <h3>내가 좋아하는 음식은 {props.name} 입니다~~</h3>
-    </>
-  );
-}
+// function Food(props) {
+//   return (
+//     <>
+//       <h3>내가 좋아하는 음식은 {props.name} 입니다~~</h3>
+//     </>
+//   );
+// }
 
+// function App() {
+//   return (
+//     <>
+//       <h1>문제 1</h1>
+//       <Food name="초콜릿" />
+//       <Food />
+//       <hr />
+
+//       <h1>문제 2</h1>
+//       <FunctionComponent title='나의 하루는 4시 40분에 시작된다' author='김유진' price='13,500' type='자기계발'/>
+//       <hr />
+
+//       <h1>문제 3</h1>
+//       <ClassComponent text='App 컴포넌트에서 넘겨준 text props 입니다.' valid={() => {console.log('콘솔 띄우기 성공!')}}/>
+//       <hr />
+//     </>
+//   );
+// }
+
+// 0419 state
+// function App() {
+//   return (
+//     <>
+//       <ClassComponent name="홍준범" />
+//       <FunctionComponent name="kim" />
+//     </>
+//   );
+// }
+
+// 0419 state practice
 function App() {
   return (
     <>
-      <h1>문제 1</h1>
-      <Food name="초콜릿" />
-      <Food />
-      <hr />
-
-      <h1>문제 2</h1>
-      <FunctionComponent title='나의 하루는 4시 40분에 시작된다' author='김유진' price='13,500' type='자기계발'/>
-      <hr />
-
-      <h1>문제 3</h1>
-      <ClassComponent text='App 컴포넌트에서 넘겨준 text props 입니다.' valid={() => {console.log('콘솔 띄우기 성공!')}}/>
-      <hr />
+      <ClassComponent />
+      <FunctionComponent  />
     </>
   );
 }

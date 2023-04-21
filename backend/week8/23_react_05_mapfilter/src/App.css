@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  margin: 10px;
 }
 
 .App-logo {
@@ -35,4 +36,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+/* practice */
+table {
+  width: 300px;
+  text-align: center;
+}
+.submitBox {
+  border: 2px solid black;
+  padding: 15px;
+}
+.searchBox {
+  padding: 20px;
 }

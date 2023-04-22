@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRef } from "react";
 
 // ver 1
 // const Alphabet = () => {
@@ -151,10 +152,20 @@ function Alphabet() {
   const [searchList, setSearchList] = useState([]);
   const [optionValue, setOptionValue] = useState("all");
 
+  const nameRef = useRef();
+  const titleRef = useRef();
+
   const addAlpha = () => {
     const trimedName = name.trim();
     const trimedTitle = title.trim();
-    if (trimedName === "" || trimedTitle == "") return;
+    if (trimedName === "") {
+      nameRef.current.focus();
+      return;
+    }
+    if (trimedTitle === "") {
+      titleRef.current.focus();
+      return;
+    }
 
     const newAlphabet = alphabet.concat({
       id: alphabet.length + 1,
@@ -164,21 +175,21 @@ function Alphabet() {
     setAlphabet(newAlphabet);
     setName("");
     setTitle("");
+    nameRef.current.focus();
   };
   const searchTitle = () => {
     const newSearchList = alphabet.filter((el) => {
       const elTitle = el.title;
-      if (elTitle.includes(search) && ( optionValue =='all' || el.name == optionValue)) {
+      if (
+        elTitle.includes(search) &&
+        (optionValue == "all" || el.name == optionValue)
+      ) {
         return el;
       }
     });
     console.log(newSearchList);
     setSearchList(newSearchList);
     setSearch("");
-  };
-  const selectOption = () => {
-    const setOption = document.querySelector("#selectName").value;
-    setOptionValue(setOption);
   };
 
   const enter = (e) => {
@@ -202,6 +213,7 @@ function Alphabet() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="작성자"
+          ref={nameRef}
           autoFocus
         />
         <label htmlFor="title">제목: </label>
@@ -212,12 +224,17 @@ function Alphabet() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="제목"
+          ref={titleRef}
           onKeyDown={enter}
         />
         <button onClick={addAlpha}>작성</button>
       </div>
       <div className="searchBox">
-        <select name="selectName" id="selectName" onChange={selectOption}>
+        <select
+          name="selectName"
+          value={optionValue}
+          onChange={(e) => setOptionValue(e.target.value)}
+        >
           <option value="all">all</option>
           {alphabet.map((el) => {
             return <option value={el.name}>{el.name}</option>;

@@ -4,33 +4,38 @@ import Axios from "axios";
 
 // 임시 데이터 (backend 서버에서 받아왔다고 가정하는 데이터)
 let fakePosts = [];
-const dataURL = "https://jsonplaceholder.typicode.com/posts";
-const getData = async (url) => {
-  let res;
-  try {
-    res = await Axios.get(url);
-  } catch (e) {
-    console.log(e);
-  }
-  return res.data;
-};
-
-getData(dataURL).then((data) => {
-  let newData = data.slice(0, 20);
-  fakePosts = [...newData];
-  console.log(fakePosts.length);
-});
 
 const PostList = () => {
   // TODO: 임시 데이터 (fakePosts)를 저장할 배열 posts state
   // 초기 값은 빈 배열
   const [posts, setPosts] = useState([]);
 
+  const dataURL = "https://jsonplaceholder.typicode.com/posts";
+  const getData = async (url) => {
+    let res;
+    try {
+      res = await Axios.get(url);
+    } catch (e) {
+      console.log(e);
+    }
+    // return res.data;
+    setPosts(res.data.slice(0, 20));
+  };
+
   useEffect(() => {
-    setInterval(() => {
-      setPosts(fakePosts);
-    }, 2000);
-  });
+    // 1. axios로 서버에 get 요청 날리는 함수 정의
+    // getData(dataURL).then((data) => {
+    //   let newData = data.slice(0, 20);
+    //   fakePosts = [...newData];
+    //   console.log(fakePosts.length);
+    // });
+    // setPosts(fakePosts);
+    getData(dataURL);
+
+    // 2. 함수 실행
+
+    console.log("hi");
+  }, []);
 
   // TODO: 해당 컴포넌트가 "mount" 되었을 때
   // posts state에 fakePosts 데이터를 설정하기

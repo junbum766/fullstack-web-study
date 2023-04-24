@@ -82,5 +82,14 @@ const arr2 = [
     id: 6,
   },
 ];
-const arr3 = arr1.concat(arr2)
-console.log(arr3)
+const arr3 = arr1.concat(arr2);
+console.log(arr3);
+
+///////// reduce(callback) ///////////
+// 배열의 각 요소에 주어진 리듀스 험수를 실행하고, 하나의 결과값을 반환
+const a = [1, 2, 3, 4, 5];
+const sum = a.reduce((acc, current, idx) => {
+  console.log(idx, '번째 acc: ', acc, ', current: ',current);
+  return acc + current;
+});
+console.log(sum);

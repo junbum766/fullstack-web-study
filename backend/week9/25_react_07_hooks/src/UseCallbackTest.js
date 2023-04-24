@@ -7,6 +7,7 @@ function UseCallbackTest() {
   const onChangeText = useCallback((e) => {
     setText(e.target.value);
   }, []);
+  
   return (
     <>
       <h1>useCallbackTest hook</h1>

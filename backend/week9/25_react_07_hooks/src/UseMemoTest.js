@@ -37,10 +37,10 @@ function UseMemoTest() {
   const avg = useMemo(() => {
     return getAverage(list);
   }, [list]);
-  // useEffect 내맘대로
-//   const avg_effect = useEffect(() => {
-//     const a = getAverage(list);
-//   }, [list]);
+  // useEffect 내맘대로 => 안된
+  //   const avg_effect = useEffect(() => {
+  //     const a = getAverage(list);
+  //   }, [list]);
   return (
     <>
       <h1>useMemo hook</h1>

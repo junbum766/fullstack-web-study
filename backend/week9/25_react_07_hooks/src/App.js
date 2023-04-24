@@ -1,5 +1,6 @@
 import UseMemoTest from './UseMemoTest'
 import UseCallbackTest from './UseCallbackTest'
+import UseReducerTest from './UseReducerTest'
 
 function App() {
   return (
@@ -7,6 +8,8 @@ function App() {
       <UseMemoTest />
       <hr/>
       <UseCallbackTest/>
+      <hr/>
+      <UseReducerTest/>
     </div>
   );
 }

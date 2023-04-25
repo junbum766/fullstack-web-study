@@ -100,3 +100,11 @@ CREATE TABLE class (
 INSERT INTO class (class_name, student_id) VALUES ('database', 'kim1234');
 SELECT * FROM class;
 SELECT * FROM student;
+
+
+
+CREATE TABLE todo (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    done TINYINT(1) NOT NULL DEFAULT 0
+);

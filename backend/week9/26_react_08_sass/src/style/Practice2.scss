@@ -1,0 +1,70 @@
+@import "./utils";
+
+@mixin p2-circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}
+@mixin p2-moving-pink() {
+  --move: 50px;
+  animation-name: p2-animation;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+@mixin p2-moving-yellow() {
+  --move: 100px;
+  animation-name: p2-animation;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+@mixin p2-moving-green() {
+  --move: 150px;
+  animation-name: p2-animation;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+@keyframes p2-animation {
+  0% {
+    top: 0px;
+    left: 0px;
+  }
+  25% {
+    top: 0px;
+    left: var(--move);
+  }
+  50% {
+    top: var(--move);
+    left: var(--move);
+  }
+  75% {
+    top: var(--move);
+    left: 0px;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+  }
+}
+
+.practice2-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .circle {
+    @include p2-circle(50px);
+    position: relative;
+  }
+  .pink {
+    background-color: $color-pink;
+    @include p2-moving-pink();
+  }
+  .yellow {
+    background-color: $color-yellow;
+    @include p2-moving-yellow();
+  }
+  .green {
+    background-color: $color-green;
+    @include p2-moving-green();
+  }
+}

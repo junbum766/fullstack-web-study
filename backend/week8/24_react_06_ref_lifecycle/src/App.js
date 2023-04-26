@@ -4,7 +4,7 @@ import RefSample3 from "./RefSample3";
 import RefSample4 from "./RefSample4";
 import LifeCycleFunc from "./LifeCycleFunc";
 import PostList from "./PostList";
-import "./App.css";
+// import "./App.css";
 
 
 function App() {

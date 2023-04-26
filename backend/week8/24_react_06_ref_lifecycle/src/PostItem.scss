@@ -1,0 +1,32 @@
+@import "~include-media/dist/include-media";
+
+.PostItem {
+  text-align: center;
+
+  background-color: rgb(183, 220, 235);
+  width: 700px;
+  margin-block: 8px;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 10px 5px 5px rgb(109, 109, 109);
+  &:hover {
+    transform: scale(1.12);
+    transition-duration: 1s;
+  }
+  .postHeader {
+    font-size: 14px;
+    .id {
+      color: blue;
+      font-weight: 700;
+      font-size: 18px;
+    }
+  }
+  .body {
+    font-size: 20px;
+  }
+}
+@include media("<768px") {
+  .PostItem {
+    width: 70vw;
+  }
+}

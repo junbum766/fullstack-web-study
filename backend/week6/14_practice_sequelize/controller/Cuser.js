@@ -13,7 +13,7 @@ exports.createUser = (req, res) => {
   // User.createUser(req.body, (result) => {
   //   res.send(result);
   // });
-  console.log(req.body.id)
+  console.log(req.body.id);
   models.User.create({
     userid: req.body.id,
     pw: req.body.pw,
@@ -103,7 +103,6 @@ exports.searchUser = (req, res) => {
   });
 };
 
-
 // 방명록
 
 exports.getVisitors = (req, res) => {
@@ -137,25 +136,27 @@ exports.deleteVisitor = (req, res) => {
 // (5) GET user/visitor/get
 exports.getVisitor = (req, res) => {
   models.Visitor.findOne({
-    where: { id : req.query.id },
+    where: { id: req.query.id },
   }).then((result) => {
-    console.log('start edit!')
+    console.log("start edit!");
     res.send(result);
-  })
+  });
 };
 
 // (6) EDIT user/visitor/edit
 exports.patchVisitor = (req, res) => {
-  models.Visitor.update({
-    name: req.body.name,
-    comment: req.body.comment,
-  },
-  {
-    where: {
-      id: req.body.id,
+  models.Visitor.update(
+    {
+      name: req.body.name,
+      comment: req.body.comment,
+    },
+    {
+      where: {
+        id: req.body.id,
+      },
     }
-  }).then((result) => {
-    console.log('update >>', result);
+  ).then((result) => {
+    console.log("update >>", result);
     res.end();
-  })
+  });
 };

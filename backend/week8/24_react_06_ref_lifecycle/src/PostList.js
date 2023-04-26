@@ -1,6 +1,7 @@
 import PostItem from "./PostItem";
 import { useEffect, useState } from "react";
 import Axios from "axios";
+import "./PostList.scss";
 
 const PostList = () => {
   // TODO: 임시 데이터 (fakePosts)를 저장할 배열 posts state
@@ -8,7 +9,7 @@ const PostList = () => {
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
-    const res = await Axios.get('https://jsonplaceholder.typicode.com/posts');
+    const res = await Axios.get("https://jsonplaceholder.typicode.com/posts");
     setPosts(res.data.slice(0, 30));
   };
 

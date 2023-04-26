@@ -1,4 +1,4 @@
-
+import './PostItem.scss'
 const PostItem = (props) => {
   // TODO: 부모 컴포넌트에서 넘겨주는 데이터(props) 구조 분해 할당
   const {id, title, body} = props.post;

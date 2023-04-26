@@ -1,27 +1,52 @@
 @import "~include-media/dist/include-media";
 @import "./utils";
 
-@mixin photo-size() {
-  width: 200px;
-  height: 200px;
-}
+// @mixin photo-size() {
+//   width: 200px;
+//   height: 200px;
+// }
+
+// .p4-container {
+//   width: 1000px;
+//   img {
+//     @include photo-size();
+//   }
+// }
+
+// @include media("<768px") {
+//     .p4-container {
+//         width: 600px;
+//     }
+// }
+
+// @include media("<532px") {
+//     .p4-container {
+//         width: 200px;
+//     }
+// }
 
 .p4-container {
-  width: 1000px;
-  img {
-    @include photo-size();
+  display: grid;
+  // grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
+
+  div {
+    width: 100%;
+
+    img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
   }
 }
-
 @include media("<768px") {
-    .p4-container {
-        width: 600px;
-    }
+  .p4-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
-
 @include media("<532px") {
-    .p4-container {
-        width: 200px;
-    }
+  .p4-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
-

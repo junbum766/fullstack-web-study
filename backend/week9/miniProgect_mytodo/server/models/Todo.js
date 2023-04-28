@@ -1,8 +1,10 @@
+// TODO: visitor 모델(-> 테이블 구조) 정의
 const Todo = function (Sequelize, DataTypes) {
   const model = Sequelize.define(
-    "todo",
+    'todo', // param1: 모델(테이블) 이름 설정
     {
       id: {
+        // id int not null primary key auto_increment
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -13,16 +15,16 @@ const Todo = function (Sequelize, DataTypes) {
         allowNull: false,
       },
       done: {
+        type: DataTypes.BOOLEAN,
         allowNull: false,
-        type: DataTypes.INTEGER,
-        default: 0,
+        defaultValue: false,
       },
     }, // param2: 컬럼 정의
     {
-      tableName: "todo", // 실제 db table명
-      freezeTableName: true, // 테이블명 고정!
-      timestamps: false, // 데이터가 추가/수정되는 시간을 컬럼으로 만들어서 기록
-    } // param3: 모델 옵션 정의
+      tableName: 'todo', // 실제 DB 테이블 이름
+      freezeTableName: true,
+      timestamps: false,
+    }, // 인자3: 모델의 옵션 정의
   );
 
   return model;

@@ -26,6 +26,7 @@ function AddTodo(props) {
         value={todoItem.title}
         onChange={(e) => setTodoItem({ title: e.target.value })}
         onKeyPress={enter}
+        autoFocus
       />
       <button onClick={onButtonClick}>Add</button>
     </div>

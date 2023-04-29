@@ -1,62 +1,66 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Todo from "./components/Todo";
 import AddTodo from "./components/AddTodo";
+import Calendar from "./components/Calendar";
+import axios from "axios";
+import "./styles/all.scss";
 
 function App() {
-  const [todoItems, setTodoItems] = useState([
-    {
-      id: 1,
-      title: "점저가",
-      done: false,
-    },
-    {
-      id: 2,
-      title: "공부하기",
-      done: false,
-    },
-    {
-      id: 3,
-      title: "밥먹기",
-      done: true,
-    },
-  ]);
-  const addItem = (newItem) => {
+  const [todoItems, setTodoItems] = useState([]);
+
+  useEffect(() => {
+    console.log("마운트 완료!");
+    const getTodos = async () => {
+      const res = await axios.get("http://localhost:8000/api/todos");
+      setTodoItems(res.data);
+    };
+    getTodos();
+  }, []);
+
+  const addItem = async (newItem) => {
     newItem.id = todoItems.length + 1;
     newItem.done = false;
     setTodoItems([...todoItems, newItem]);
+    const res = await axios.post("http://localhost:8000/api/todo", newItem);
+    console.log(">>>", res.data);
   };
-  const deleteItem = (targetItem) => {
+
+  const deleteItem = async (targetItem) => {
     const newTodoItems = todoItems.filter((el) => {
       return el.id !== targetItem.id;
     });
     setTodoItems(newTodoItems);
+
+    await axios.delete(`http://localhost:8000/api/todo/${targetItem.id}`);
   };
-  const editItem = (targetItem) => {
-    const newTodoItems = todoItems.map((el) => {
-      if (el.id === targetItem.id) {
-        el = {
-          id: el.id,
-          title: el.title,
-          done: !el.done,
-        };
-      }
-      return el;
-    });
-    setTodoItems(newTodoItems);
+
+  const editItem = async (targetItem) => {
+    await axios.patch(
+      `http://localhost:8000/api/todo/${targetItem.id}`,
+      targetItem
+    );
   };
+
   return (
     <div className="App">
-      <AddTodo addItem={addItem} />
-      {todoItems.map((item) => {
-        return (
-          <Todo
-            key={item.id}
-            item={item}
-            deleteItem={deleteItem}
-            editItem={editItem}
-          />
-        );
-      })}
+      {/* <header><h1>⭐s⭐⭐⭐⭐Todo⭐⭐⭐⭐⭐</h1></header> */}
+      <main className="main">
+        <Calendar />
+        <AddTodo addItem={addItem} />
+        <div className="TodoContainer">
+          {todoItems.map((item) => {
+            return (
+              <Todo
+                key={item.id}
+                item={item}
+                deleteItem={deleteItem}
+                editItem={editItem}
+              />
+            );
+          })}
+        </div>
+      </main>
+      <footer>{/* <h1>⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</h1> */}</footer>
     </div>
   );
 }

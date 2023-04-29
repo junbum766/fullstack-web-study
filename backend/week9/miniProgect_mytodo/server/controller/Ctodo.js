@@ -1,5 +1,5 @@
-const { Todo } = require('../models');
-const { Op } = require('sequelize');
+const { Todo } = require("../models");
+const { Op } = require("sequelize");
 
 // GET /api/todos - show all todos (READ)
 exports.readTodos = async (_, res) => {
@@ -13,13 +13,11 @@ exports.readTodos = async (_, res) => {
 
 // POST /api/todo - create a new todo (CREATE)
 exports.createTodo = async (req, res) => {
-  console.log('>>>>', req.body);
   try {
     let newTodo = await Todo.create({
       title: req.body.title,
       done: false, // todoItem 추가시 false가 기본 값
     });
-    console.log(newTodo);
     res.send(newTodo);
   } catch (err) {
     res.send(err);
@@ -28,8 +26,8 @@ exports.createTodo = async (req, res) => {
 
 // PATCH /api/todo/:todoId - edit a specific todo (UPDATE)
 exports.updateTodo = async (req, res) => {
-  console.log('>>>', req.body);
   try {
+
     // 배열 구조 분해
     // [isUpdated] = [ 0 ] or [ 1 ]
     let [idUpdated] = await Todo.update(
@@ -41,7 +39,7 @@ exports.updateTodo = async (req, res) => {
         where: {
           id: { [Op.eq]: req.params.todoId },
         },
-      },
+      }
     );
     // console.log(idUpdated); // 0 or 1
 
@@ -58,9 +56,10 @@ exports.updateTodo = async (req, res) => {
 
 exports.deleteTodo = async (req, res) => {
   try {
+    console.log("delete id >>> ", req.params.todoId);
     let isDeleted = await Todo.destroy({
       where: {
-        id: { [Op.gte]: req.params.todoId },
+        id: { [Op.eq]: req.params.todoId },
         // Op.eq = 같으면, Op.gt = 크면
         // id: req.params.todoId,
       },

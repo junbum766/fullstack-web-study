@@ -16,19 +16,28 @@ function Todo(props) {
   const enterKeyEventHandler = (e) => {
     if (e.key == "Enter") {
       setReadOnly(!readOnly);
+      editItem(todoItem);
     }
   };
   const editEventHandler = (e) => {
     const { title, ...rest } = todoItem;
     if (readOnly == false) {
-      setTodoItem({
+      const item = {
         id: rest.id,
         title: e.target.value,
         done: rest.done,
-      });
+      };
+      setTodoItem(item);
     }
   };
-  const checkBoxEventHandler = () => {
+  const checkBoxEventHandler = (e) => {
+    const { done, ...rest } = todoItem;
+    const item = {
+      id: rest.id,
+      title: rest.title,
+      done: e.target.checked,
+    };
+    setTodoItem(item);
     editItem(item);
   };
   return (
@@ -44,9 +53,10 @@ function Todo(props) {
       />
       <input
         type="text"
+        className="todoValue"
         value={todoItem.title}
         onClick={offReadOnlyMode}
-        onKeyDown={enterKeyEventHandler}
+        onKeyPress={enterKeyEventHandler}
         onChange={editEventHandler}
       ></input>
       <button onClick={deleteButtonClick}>DELETE</button>

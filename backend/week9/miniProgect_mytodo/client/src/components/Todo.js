@@ -42,7 +42,6 @@ function Todo(props) {
   };
   return (
     <div className="Todo">
-      {!readOnly && <span>수정모드</span>}
       <input
         type="checkbox"
         id={`todo${item.id}`}
@@ -51,6 +50,7 @@ function Todo(props) {
         defaultChecked={item.done}
         onChange={checkBoxEventHandler}
       />
+
       <input
         type="text"
         className="todoValue"
@@ -59,7 +59,10 @@ function Todo(props) {
         onKeyPress={enterKeyEventHandler}
         onChange={editEventHandler}
       ></input>
+
       <button onClick={deleteButtonClick}>DELETE</button>
+      {!readOnly && <span className="editmode">수정모드(press Enter!!!)</span>}
+
     </div>
   );
 }

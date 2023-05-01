@@ -4,14 +4,14 @@ import AddTodo from "./components/AddTodo";
 import Calendar from "./components/Calendar";
 import axios from "axios";
 import "./styles/all.scss";
-
+import {API_BASE_URL} from './app-config'
 function App() {
   const [todoItems, setTodoItems] = useState([]);
 
   useEffect(() => {
     console.log("마운트 완료!");
     const getTodos = async () => {
-      const res = await axios.get("http://localhost:8000/api/todos");
+      const res = await axios.get(API_BASE_URL + "/api/todos");
       setTodoItems(res.data);
     };
     getTodos();
@@ -21,7 +21,7 @@ function App() {
     newItem.id = todoItems.length + 1;
     newItem.done = false;
     setTodoItems([...todoItems, newItem]);
-    const res = await axios.post("http://localhost:8000/api/todo", newItem);
+    const res = await axios.post(API_BASE_URL + "/api/todo", newItem);
     console.log(">>>", res.data);
   };
 
@@ -31,19 +31,18 @@ function App() {
     });
     setTodoItems(newTodoItems);
 
-    await axios.delete(`http://localhost:8000/api/todo/${targetItem.id}`);
+    await axios.delete(API_BASE_URL + `/api/todo/${targetItem.id}`);
   };
 
   const editItem = async (targetItem) => {
     await axios.patch(
-      `http://localhost:8000/api/todo/${targetItem.id}`,
+      API_BASE_URL + `/api/todo/${targetItem.id}`,
       targetItem
     );
   };
 
   return (
     <div className="App">
-      {/* <header><h1>⭐s⭐⭐⭐⭐Todo⭐⭐⭐⭐⭐</h1></header> */}
       <main className="main">
         <Calendar />
         <AddTodo addItem={addItem} />
@@ -60,7 +59,6 @@ function App() {
           })}
         </div>
       </main>
-      <footer>{/* <h1>⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</h1> */}</footer>
     </div>
   );
 }

@@ -1,6 +1,8 @@
+
 .main {
-  width: 100vw;
+  overflow-x: hidden;
   height: max-content;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,6 +72,10 @@
     &:focus {
       outline: none;
     }
+  }
+  .editmode {
+    color: white;
+    margin-left: 10px;
   }
   button {
     border-radius: 10px;

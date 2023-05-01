@@ -4,7 +4,10 @@ const { Op } = require("sequelize");
 // GET /api/todos - show all todos (READ)
 exports.readTodos = async (_, res) => {
   try {
-    let todos = await Todo.findAll();
+    let todos = await Todo.findAll({
+      order: [["id", "DESC"]], // id 기준 내림차순으로
+    });
+
     res.send(todos);
   } catch (err) {
     res.send(err);
@@ -27,7 +30,6 @@ exports.createTodo = async (req, res) => {
 // PATCH /api/todo/:todoId - edit a specific todo (UPDATE)
 exports.updateTodo = async (req, res) => {
   try {
-
     // 배열 구조 분해
     // [isUpdated] = [ 0 ] or [ 1 ]
     let [idUpdated] = await Todo.update(
